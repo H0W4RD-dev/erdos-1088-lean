@@ -121,7 +121,8 @@ None of these affects the theorem.
 
 ## Authorship and AI assistance
 
-<!-- TO CONFIRM: final author list and roles. -->
+**Authors:** Will Howe, Grant Huffman, Jensen Kohlmeyer and Liam Kruer.
+
 The mathematical argument, the manuscript and the Lean code were produced by AI agents (Claude,
 Anthropic) in research sessions directed by Will Howe. Three independent AI referee passes checked
 the informal argument. Lean's kernel then checked the full formalization. No human expert has
