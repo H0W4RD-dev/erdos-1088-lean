@@ -7,6 +7,11 @@ log₂ f_d(n) = o(d).
 Here f_d(n) is the least m such that every set of m points in ℝ^d contains n points whose
 pairwise distances are all distinct.
 
+> **Review status.** Lean's kernel checks the formal proof against the verbatim formal-conjectures
+> statement, with only the standard axioms. **No human expert has reviewed the informal mathematical
+> argument yet.** Both the proof and the formalization were produced with AI assistance; see
+> [Authorship and AI assistance](#authorship-and-ai-assistance).
+
 ## Target theorem
 
 `Erdos1088.erdos_1088` in [`E1088/Final.lean`](E1088/Final.lean):
@@ -107,11 +112,25 @@ None of these affects the theorem.
 
 [`notes/DEVELOPMENT_NOTES.md`](notes/DEVELOPMENT_NOTES.md) is the historical development log.
 
+## Paper
+
+- [`paper/`](paper/) holds the LaTeX manuscript; the main file is `paper/main.tex`.
+- [`paper/research_notes_compiled.pdf`](paper/research_notes_compiled.pdf) is the compiled
+  research record from which the manuscript was assembled: the assembled proof, the appendices
+  and the AI referee reports. It is a working document, not the manuscript.
+
 ## Authorship and AI assistance
 
-The Lean code was written by AI agents (Claude, Anthropic) in sessions directed by Will Howe.
-The mathematical argument was also developed by AI agents in those sessions; see the manuscript
-for attribution and disclosure.
+<!-- TO CONFIRM: final author list and roles. -->
+The mathematical argument, the manuscript and the Lean code were produced by AI agents (Claude,
+Anthropic) in research sessions directed by Will Howe. Three independent AI referee passes checked
+the informal argument. Lean's kernel then checked the full formalization. No human expert has
+reviewed the informal argument yet. Section 12 of the manuscript has the full disclosure.
+
+## License
+
+<!-- TO CHOOSE: no license has been chosen yet. The proposal is Apache-2.0, matching formal-conjectures. -->
+No license has been chosen yet.
 
 ## Third-party material
 
