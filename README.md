@@ -130,8 +130,8 @@ reviewed the informal argument yet. Section 12 of the manuscript has the full di
 
 ## License
 
-<!-- TO CHOOSE: no license has been chosen yet. The proposal is Apache-2.0, matching formal-conjectures. -->
-No license has been chosen yet.
+Copyright 2026 Will Howe, Grant Huffman, Jensen Kohlmeyer and Liam Kruer. Licensed under the
+[Apache License, Version 2.0](LICENSE), the same license formal-conjectures uses.
 
 ## Third-party material
 
