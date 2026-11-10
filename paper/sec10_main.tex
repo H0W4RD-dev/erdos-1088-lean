@@ -12,8 +12,10 @@ Let $n\ge4$ and $D\ge1$. The constants are defined in the following order.
   and $D$.
 \item For $n\ge5$ and $r=n-5,n-6,\dots,0$, in this order:
   \begin{equation}\label{eq:Gamma-low}
-  \Gamma'_r:=\Gamma_{r+1}+r^2,\qquad{\mathrm{ratio}}_r:=\text{the number of Theorem~\ref{thm:E1} with }\Gamma'=\Gamma'_r,\qquad
+  \begin{gathered}
+  \Gamma'_r:=\Gamma_{r+1}+r^2,\qquad{\mathrm{ratio}}_r:=\text{the number of Theorem~\ref{thm:E1} with }\Gamma'=\Gamma'_r,\\
   \Gamma_r:=P(K_r-1,r)\bigl(2\,{\mathrm{ratio}}_r\,\Gamma_{r+1}+2r^2+1\bigr),
+  \end{gathered}
   \end{equation}
   with $P(K,r)$ as in Lemma~\ref{lem:kill}. Here ${\mathrm{ratio}}_r$ depends only on $n$, $D$ and $\Gamma'_r$, and $\Gamma_r$ only on $n$,
   $D$ and $\Gamma_{r+1}$.
@@ -92,7 +94,7 @@ Theorem~\ref{thm:allclaims} (Claim$(0)$) gives
 \]
 By induction on $D$, $h=s_n(\lfloor D/2\rfloor)$ is finite (with $s_n(0)=1$). So $s_n(D)$ is finite and
 $s_n(D)\le A(D)\,(s_n(\lfloor D/2\rfloor)+1)$ with $A(D):=\Gamma_0\,2^{\Lst+2+2n}$. By Lemma~\ref{lem:growth} and the definition
-of $L_k$, $\log_2A(D)\le c_n\log_2(D+2)+2^{14}\kst^{\,3}\sqrt{D+4}\log_2(D+4)+2+2n$. For $D\ge1$ we have
+of $L_k$, $\log_2A(D)\le c_n\log_2(D+2)+2^{14}{\kst}^{3}\sqrt{D+4}\log_2(D+4)+2+2n$. For $D\ge1$ we have
 $\sqrt{D+4}\le\sqrt5\sqrt D$, $\log_2(D+4)\le2\log_2(D+2)$ and $\sqrt D\log_2(D+2)\ge1$, so
 $A(D)\le2^{C\sqrt D\log_2(D+2)}$ for a constant $C\ge1$ depending only on $n$. Lemma~\ref{lem:halving} gives
 $s_n(d)\le2^{6C\sqrt d\log_2(d+2)}$, and $f_d(n)=s_n(d)+1\le2^{(6C+1)\sqrt d\log_2(d+2)}$.

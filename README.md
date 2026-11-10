@@ -114,7 +114,7 @@ None of these affects the theorem.
 
 ## Paper
 
-- [`paper/`](paper/) holds the LaTeX manuscript; the main file is `paper/main.tex`.
+- [`paper/main.pdf`](paper/main.pdf) is the compiled manuscript; the LaTeX sources are in [`paper/`](paper/), with `main.tex` as the main file.
 - [`paper/research_notes_compiled.pdf`](paper/research_notes_compiled.pdf) is the compiled
   research record from which the manuscript was assembled: the assembled proof, the appendices
   and the AI referee reports. It is a working document, not the manuscript.
@@ -126,7 +126,7 @@ None of these affects the theorem.
 The mathematical argument, the manuscript and the Lean code were produced by AI agents (Claude,
 Anthropic) in research sessions directed by Will Howe. Three independent AI referee passes checked
 the informal argument. Lean's kernel then checked the full formalization. No human expert has
-reviewed the informal argument yet. Section 12 of the manuscript has the full disclosure.
+reviewed the informal argument yet. Section 13 of the manuscript has the full disclosure (Section 12 describes the Lean formalization).
 
 ## License
 

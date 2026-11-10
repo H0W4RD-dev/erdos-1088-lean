@@ -27,10 +27,10 @@ most $k_c(r)\le\kst$. For instance $k_3(w_1)=\binom{n-4}2+4n-12\ge k_5$, using $
 $\kst\le 6^{\,n-4}+2n^2$.
 
 \begin{definition}[absolute parameters]\label{def:absolute}
-\[
-\Lst:=L_{\kst}(D+2),\quad \mu:=2^{\Lst}(h+1),\quad e:=2^{\Lst+1}(h+1),\quad e_A:=2^{\Lst+2}(h+1),\quad
-\smin:=2^{\Lst+2+2n}(h+1).
-\]
+\begin{gather*}
+\Lst:=L_{\kst}(D+2),\quad \mu:=2^{\Lst}(h+1),\quad e:=2^{\Lst+1}(h+1),\\
+e_A:=2^{\Lst+2}(h+1),\quad \smin:=2^{\Lst+2+2n}(h+1).
+\end{gather*}
 \end{definition}
 These depend only on $n$, $D$ and $h$. We shall use the following inequalities, all immediate from the
 definitions (recall $h\ge1$, so $\mu\ge2$):
@@ -52,10 +52,10 @@ real $\sigma>0$ (the \emph{cap}) such that
 \]
 For $j=0$ the cap condition is void, and $(\emptyset,W,\sigma)$ is a configuration for every $W\subseteq X$
 and every $\sigma>0$. For $b\in W$ put
-\[
-R_b:=\Dist(S\cup\{b\})=\Dist(S)\cup\{\dd bs:s\in S\},\qquad
+\begin{gather*}
+R_b:=\Dist(S\cup\{b\})=\Dist(S)\cup\{\dd bs:s\in S\},\\
 \Bg_b(\tau):=\{\lambda>0:\lambda\notin R_b,\ |W\cap\Sph(b,\lambda)|\ge\tau\}\quad(\tau>0).
-\]
+\end{gather*}
 \end{definition}
 
 If $(S,W,\sigma)$ is a level-$j$ configuration, $W'\subseteq W$ and $\sigma'\ge\sigma$, then $(S,W',\sigma')$ is
@@ -127,11 +127,11 @@ e_{K,r}:=K+2r+\tbinom r2 .
 \end{lemma}
 \begin{proof}
 For $b\in W$ define
-\[
+\begin{gather*}
 \Delta_b(y):=\prod_{s\in S}\bigl(\dd yb^2-\dd ys^2\bigr)\prod_{s\in S}\bigl(\dd yb^2-\dd bs^2\bigr)
-\prod_{d\in\Dist(S)}\bigl(\dd yb^2-d^2\bigr),\qquad
+\prod_{d\in\Dist(S)}\bigl(\dd yb^2-d^2\bigr),\\
 F_b(y):=\Delta_b(y)\prod_{\lambda\in\Bg_b(\tau)}\bigl(\dd yb^2-\lambda^2\bigr).
-\]
+\end{gather*}
 $F_b$ is a product of at most $e_{K,r}$ affine functions of the lifted coordinates, so by Lemma~\ref{lem:DIM}
 all $F_b$ lie in one space of dimension $\binom{D+1+e_{K,r}}{e_{K,r}}$. At $y=b$ the factors equal $-\dd bs^2$,
 $-\dd bs^2$, $-d^2$ and $-\lambda^2$, all nonzero (recall $b\notin S$), so $F_b(b)\ne0$.
