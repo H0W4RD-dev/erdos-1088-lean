@@ -1,0 +1,192 @@
+% ====================================================================
+\section{The top levels: Theorem R$^+$ with a single cap}\label{sec:top}
+% ====================================================================
+
+In this section we prove Claim$(j)$ for $j=n-2,n-3,n-4$ (for $n=4$: $j=2,1,0$). At these levels a point
+with two big classes is handled directly, using $n-4$ points of $S$ as ``spread'' points; no class-count
+statement is needed.
+
+\begin{theorem}[Theorem R$^+$]\label{thm:Rplus}
+Put $Q:=2^{44}n^4(D+2)^{8k'}$, $\Gamma_{n-2}:=4(n-2)^2$, and for $j=n-3,n-4$
+\begin{equation}\label{eq:Gamma-top}
+\Gamma_j:=P^+_j\,\bigl(2Q\Gamma_{j+1}+2(j^2+2n)+1\bigr),\qquad P^+_j:=\binom{D+1+e_j}{e_j}^{2},\quad
+e_j:=2+2j+\tbinom j2 .
+\end{equation}
+Then Claim$(j)$ holds with constant $\Gamma_j$ for $j=n-2,n-3,n-4$.
+\end{theorem}
+
+\begin{remark}[provenance and referee fixes]\label{rem:Rplus-prov}
+This is Theorem~R$^+$ of the project notes. There it was formulated with a sequence of thresholds
+$\tau_0<\tau_1<\cdots$, one for each point of $S$. An AI referee pass (report ``REFEREE\_R'') found it correct
+subject to three fixes: \textbf{F1}, a genuine threshold gap in Step~A, repaired by the branch at
+$\theta=Q^{1/2}\sigma$ in Step~4 below; \textbf{F2}, the auxiliary points $a$ must be taken in $W\setminus\{b\}$;
+\textbf{F3}, an undefined threshold $\tau_{-1}$, which is moot here because only the points of $S'$ are used and
+$S'=\emptyset$ is allowed. A later referee pass (``referee15'', item~X1) asked that the single-cap version
+be written out in full rather than obtained by a translation remark. This section does so. In particular the
+two-class count (``Lemma~S2'') and the ``four-case analysis'' of the notes appear below as Step~3 and
+Lemma~\ref{lem:twodist}. The ``level switch'' for $n\ge6$ that was sketched in the notes after that referee pass is not
+needed: the configuration formalism of Section~\ref{sec:framework} replaces it. For $n=4$ the Main Theorem follows from
+Theorem~\ref{thm:Rplus} alone. An earlier, longer proof of the case $n=4$ in the project notes, together with the editorial
+items of its referee report that concern only that proof, is superseded and not used here.
+\end{remark}
+
+\subsection{The base level}
+
+\begin{proof}[Proof of Claim$(n-2)$]
+Let $(S,W,\sigma)$ be a level-$(n-2)$ configuration with $\sigma\ge\smin$. Then $S$ is a rainbow $(n-2)$-set and every
+$x\in W$ is $S$-generic, i.e.\ $W\subseteq Y_S$ in the notation of Section~\ref{sec:G1}. For every real $v$,
+$\deg_W(v)\le\sum_{s\in S}|W\cap\Sph(s,v)|<(n-2)\sigma$. Suppose $|W|\ge4(n-2)^2\sigma$. Then
+$\deg_W(v)<|W|/(4(n-2))$ for all $v$, and Corollary~\ref{cor:G1}(c) gives
+$|W|\le2\cdot4^{n-2}\mu+4\le\smin\le\sigma<4(n-2)^2\sigma$, a contradiction. Hence
+$|W|<4(n-2)^2\sigma=\Gamma_{n-2}\sigma$.
+\end{proof}
+
+\subsection{Two distributions}
+
+\begin{lemma}[two-distribution lemma]\label{lem:twodist}
+Let $p=(p_t)$ and $q=(q_t)$ be finitely supported probability distributions on $\R$, let $\rho\ne\rho'$ be reals and
+$0\le\eta\le1/16$. Suppose
+\[
+(1-p_{\rho'})(1-q_\rho)-\sum_{t\notin\{\rho,\rho'\}}p_tq_t\;\le\;\eta .
+\]
+Then there is a real $t^\ast$ with $p_{\rho'}+p_{t^\ast}\ge1-\eta^{1/4}$ or $q_\rho+q_{t^\ast}\ge1-\eta^{1/4}$.
+\end{lemma}
+\begin{proof}
+Let $\alpha:=1-p_{\rho'}$ and $\beta:=1-q_\rho$. If $\alpha\le\eta^{1/4}$ or $\beta\le\eta^{1/4}$, the claim
+holds with any $t^\ast$. Otherwise $\alpha\beta>\sqrt\eta$. For $t\notin\{\rho,\rho'\}$ put $p'_t:=p_t/\alpha$ and
+$q'_t:=q_t/\beta$. Then $p'_t,q'_t\le1$, $\sum_tp'_t\le1$ and $\sum_tq'_t\le1$ (sums over $t\notin\{\rho,\rho'\}$),
+and the hypothesis gives $\sum_tp'_tq'_t\ge1-\eta/(\alpha\beta)\ge1-\epsilon$ with $\epsilon:=\sqrt\eta<1$. Let
+$t^\ast\notin\{\rho,\rho'\}$ maximise $q'_t$. Then $1-\epsilon\le\sum_tp'_tq'_t\le q'_{t^\ast}$, and
+$1-\epsilon\le p'_{t^\ast}q'_{t^\ast}+\sum_{t\ne t^\ast}q'_t\le p'_{t^\ast}+(1-q'_{t^\ast})\le p'_{t^\ast}+\epsilon$.
+So $p'_{t^\ast}\ge1-2\epsilon$, and $p_{\rho'}+p_{t^\ast}=(1-\alpha)+\alpha p'_{t^\ast}\ge1-2\sqrt\eta\ge1-\eta^{1/4}$,
+where the last step uses $\eta\le1/16$.
+\end{proof}
+
+\subsection{A column with two big classes (Step A)}
+
+For a level-$j$ configuration $(S,W,\sigma)$ and $b\in W$ let $\Delta_b$ be the polynomial of
+Lemma~\ref{lem:kill}:
+$\Delta_b(y)=\prod_{s}(\dd yb^2-\dd ys^2)\prod_s(\dd yb^2-\dd bs^2)\prod_{d\in\Dist(S)}(\dd yb^2-d^2)$. If
+$\Delta_b(a)\ne0$ then $\dd ab\notin R_b$ and $a\notin\bigcup_s\Bis(b,s)$.
+
+\begin{lemma}[Step A]\label{lem:stepA}
+Let $\max(n-4,0)\le j\le n-3$, and let $(S,W,\sigma)$ be a level-$j$ configuration with $\sigma\ge\smin$. Let $b\in W$
+and let $\rho_1\ne\rho_2$ be elements of $\Bg_b(Q\sigma)$. Put $C_\nu:=W\cap\Sph(b,\rho_\nu)$ for $\nu=1,2$, so that
+$|C_\nu|\ge Q\sigma$. Then the set
+\[
+A:=\{a\in W\setminus\{b\}:\ \dd ab\notin\{\rho_1,\rho_2\},\ \Delta_b(a)\ne0\}
+\]
+has $|A|\le e_A+(j^2+2(n-4))\sigma$.
+\end{lemma}
+
+\begin{proof}
+Fix $S'\subseteq S$ with $|S'|=n-4$; this is possible since $j\ge n-4$. Let $A_0$ be the set of $a\in A$ such that
+$\dd as\ne\dd b{s'}$ for all $s,s'\in S$, and $a\notin\Sph(s,\rho_1)\cup\Sph(s,\rho_2)$ for all $s\in S'$. By
+Lemma~\ref{lem:ext} and the cap condition, $|A\setminus A_0|<j^2\sigma+2(n-4)\sigma$. It remains to show
+$|A_0|\le e_A$.
+
+\emph{Step 1: the $(n-2)$-set $T$.} For $a\in A_0$ let $T=T(a):=\{b,a\}\cup S'$, so $|T|=n-2$. Since
+$\dd ab\notin R_b$, $a\notin\bigcup_s\Bis(b,s)$ and $\dd as\ne\dd b{s'}$, Lemma~\ref{lem:ext} shows that
+$S\cup\{b,a\}$ is rainbow, hence so is $T$. Moreover $\rho_\nu\notin\Dist(T)$, where
+$\Dist(T)=\Dist(S')\cup\{\dd bs,\dd as:s\in S'\}\cup\{\dd ab\}$. Indeed, $\rho_\nu\notin R_b\supseteq\Dist(S')\cup\{\dd bs\}$
+by the definition of $\Bg_b$; $\rho_\nu\ne\dd ab$ since $a\in A$; and $\rho_\nu\ne\dd as$ for $s\in S'$ by the
+definition of $A_0$.
+
+\emph{Step 2: non-generic points.} Fix $a\in A_0$ and $\nu\in\{1,2\}$, and let $x\in C_\nu$. Then $x\notin T$:
+$x\ne b$ since $\dd xb=\rho_\nu>0$, $x\ne a$ since $\dd ab\ne\rho_\nu$, and $x\notin S$ since $W\cap S=\emptyset$.
+The label set of $x$ is $L_x=\{\rho_\nu,\dd xa\}\cup\{\dd xs:s\in S'\}$. If $x$ is not $T$-generic, then $x$ lies in
+\[
+\Sph\bigl(a,\Dist(T)\cup\{\rho_\nu\}\bigr)\ \cup\ \bigcup_{s\in S'}\Bis(a,s)\ \cup\ \Sm_\nu(a),\qquad
+\Sm_\nu(a):=\bigcup_{s\in S'}\Sph\bigl(s,\{\rho_\nu,\dd ab\}\cup\{\dd b{s'},\dd a{s'}:s'\in S'\}\bigr).
+\]
+Indeed, the possible coincidences among $\Dist(T)\cup L_x$ are the following. $\Dist(T)$ itself is rainbow.
+Equalities among the $\dd xs$, or between some $\dd xs$ and $\Dist(S')$, are impossible because $S\cup\{x\}$ is rainbow.
+Equalities $\dd xs\in\{\rho_\nu,\dd ab,\dd b{s'},\dd a{s'}\}$ put $x$ in $\Sm_\nu(a)$. An equality $\dd xs=\dd xa$ puts $x$
+in $\Bis(a,s)$. An equality $\dd xa\in\Dist(T)\cup\{\rho_\nu\}$ puts $x$ on a sphere about $a$. Finally
+$\rho_\nu\notin\Dist(T)$ by Step~1. The set $\Sm_\nu(a)$ is a union of $(n-4)(2n-6)$ spheres about points of $S$,
+so $|C_\nu\cap\Sm_\nu(a)|<2n^2\sigma$.
+
+\emph{Step 3: counting cross pairs (``Lemma S2'').} Fix $a\in A_0$ and put $P:=C_1\cap Y_T$ and $Q':=C_2\cap Y_T$. These
+are disjoint, since $\rho_1\ne\rho_2$. Let $E$ be the set of pairs $(x,w)\in P\times Q'$ with $\dd xa=\dd wa$, or
+$\dd xa=\rho_2$, or $\dd wa=\rho_1$. We claim
+\begin{equation}\label{eq:S2}
+|(P\times Q')\setminus E|\le\bigl(4^{n-2}\mu+n(n-4)\sigma\bigr)(|P|+|Q'|).
+\end{equation}
+By Corollary~\ref{cor:G1}(b), at most $4^{n-2}\mu(|P|+|Q'|)$ pairs are label-disjoint. Let $(x,w)\notin E$ share a
+label, where $L_x=\{\rho_1,\dd xa\}\cup\{\dd xs\}_{s\in S'}$ and $L_w=\{\rho_2,\dd wa\}\cup\{\dd ws\}_{s\in S'}$.
+Since $\rho_1\ne\rho_2$ and $(x,w)\notin E$, the shared value involves some $s\in S'$, so one of the following
+holds. Either $\dd xs\in\{\dd w{s'},\rho_2,\dd wa\}$: then for fixed $w$ the point $x$ lies on one of $(n-4)(n-2)$
+spheres about points of $S'$, which gives at most $(n-4)(n-2)\sigma|Q'|$ pairs. Or $\dd ws\in\{\rho_1,\dd xa\}$:
+this gives at most $2(n-4)\sigma|P|$ pairs. Since $(n-4)(n-2)\le n(n-4)$ and $2(n-4)\le n(n-4)$, \eqref{eq:S2}
+follows.
+
+\emph{Step 4: one of the two classes is covered.} Fix $a\in A_0$ and put $\theta:=Q^{1/2}\sigma$. We claim that there are
+$\nu\in\{1,2\}$ and a real $t^\ast=t^\ast(a)$ such that, with $V(a):=\Dist(T)\cup\{\rho_1,\rho_2,t^\ast\}$,
+\begin{equation}\label{eq:stepA-cover}
+\Bigl|C_\nu\setminus\Bigl(\Sph(a,V(a))\cup\bigcup_{s\in S'}\Bis(a,s)\Bigr)\Bigr|\le\frac{|C_\nu|}{16(D+2)^{k'}} .
+\end{equation}
+We use $|C_\nu|\ge Q\sigma$ and the bounds $Q^{-1/2}=2^{-22}n^{-2}(D+2)^{-4k'}\le2^{-5}(D+2)^{-k'}$ and
+$2n^2/Q\le2^{-5}(D+2)^{-k'}$.
+\begin{itemize}[leftmargin=1.5em]
+\item If $|P|<\theta$, Step~2 shows that the left side of~\eqref{eq:stepA-cover} for $\nu=1$ is at most
+  $|P|+|C_1\cap\Sm_1(a)|<(Q^{1/2}+2n^2)\sigma\le(Q^{-1/2}+2n^2/Q)|C_1|\le|C_1|/(16(D+2)^{k'})$. The case $|Q'|<\theta$
+  is symmetric, with $\nu=2$.
+\item Otherwise $|P|,|Q'|\ge\theta$. Put $\eta:=(4^{n-2}\mu+n(n-4)\sigma)(1/|P|+1/|Q'|)$. Since
+  $4^n\mu\le\smin\le\sigma$, we have $4^{n-2}\mu\le\sigma/16$, and therefore
+  \[
+  \eta\le\frac{2(\sigma/16+n^2\sigma)}{Q^{1/2}\sigma}\le 3n^2Q^{-1/2}\le2^{-20}(D+2)^{-4k'}\le\tfrac1{16}.
+  \]
+  Let $p_t:=|P\cap\Sph(a,t)|/|P|$ and $q_t:=|Q'\cap\Sph(a,t)|/|Q'|$. For independent uniform $x\in P$ and $w\in Q'$,
+  \[
+  \Pr[(x,w)\notin E]=\Pr[\dd xa\ne\rho_2,\ \dd wa\ne\rho_1,\ \dd xa\ne\dd wa]
+  =(1-p_{\rho_2})(1-q_{\rho_1})-\sum_{t\notin\{\rho_1,\rho_2\}}p_tq_t,
+  \]
+  and by~\eqref{eq:S2} this is at most $\eta$. Lemma~\ref{lem:twodist} (with $\rho=\rho_1$, $\rho'=\rho_2$) gives
+  $t^\ast$ with $p_{\rho_2}+p_{t^\ast}\ge1-\eta^{1/4}$ or $q_{\rho_1}+q_{t^\ast}\ge1-\eta^{1/4}$. In the first case all but
+  $\eta^{1/4}|P|$ points of $P$ lie on $\Sph(a,\{\rho_2,t^\ast\})$. Together with Step~2, the left side
+  of~\eqref{eq:stepA-cover} for $\nu=1$ is at most $\eta^{1/4}|C_1|+2n^2\sigma\le(2^{-5}(D+2)^{-k'}+2n^2/Q)|C_1|$,
+  which is at most $|C_1|/(16(D+2)^{k'})$. The second case is symmetric, with $\nu=2$.
+\end{itemize}
+
+\emph{Step 5: GL, LR and OR.} Let $A_\nu$ be the set of $a\in A_0$ for which~\eqref{eq:stepA-cover} holds with this
+$\nu$. Then $A_0=A_1\cup A_2$; say $|A_1|\ge|A_0|/2$ (the other case is symmetric). Note $A_1\cap C_1=\emptyset$.
+List $V(a)$ as $v_1(a),\dots,v_{t+3}(a)$, where $t=\binom{n-2}2$ and entries are repeated if $|V(a)|<t+3$. On rows
+$C_1$ and columns $A_1$ consider
+\[
+\mathcal B[x,a]:=\prod_{i=1}^{t+3}\bigl(\dd xa^2-v_i(a)^2\bigr)\prod_{s\in S'}\bigl(\dd xa^2-\dd xs^2\bigr).
+\]
+It has $t+n-1\le k'$ factors, so $\rk\mathcal B\le(D+2)^{k'}$ by Lemmas~\ref{lem:distrank} and~\ref{lem:HP}. By
+\eqref{eq:stepA-cover}, each column has at most $|C_1|/(16(D+2)^{k'})$ nonzero entries. Lemma~\ref{lem:GL} gives
+$C''\times A''$ with $|C''|\ge|C_1|/2$, $|A''|\ge|A_1|/2$ and $\mathcal B=0$ on it. So on $C''\times A''$ the matrix
+$[\dd xa^2]$, of rank at most $D+2$, is covered by at most $k'\le\kst$ types: the column functions $v_i(a)^2$ (some of
+them constants) and the row functions $\dd xs^2$, $s\in S'$. Theorem~\ref{thm:LR} gives $R\times C'\subseteq C''\times A''$
+with $|R|\ge2^{-\Lst}|C''|$, $|C'|\ge2^{-\Lst}|A''|$ and a single type. Since $S'\cap C'=\emptyset$,
+Lemma~\ref{lem:typeOR} gives $\min(|R|,|C'|)\le h$. But
+$|R|\ge2^{-\Lst-1}Q\sigma\ge2^{-\Lst-1}\smin>h$, so $|C'|\le h$. Hence $|A''|\le2^{\Lst}h$, $|A_1|\le2^{\Lst+1}h$ and
+$|A_0|\le2^{\Lst+2}h<e_A$.
+\end{proof}
+
+\subsection{Proof of Theorem~\ref{thm:Rplus}}
+Claim$(n-2)$ was proved above. Let $j\in\{n-3,n-4\}$ and assume Claim$(j+1)$ with constant $\Gamma_{j+1}$. Let
+$(S,W,\sigma)$ be a level-$j$ configuration with $\sigma\ge\smin$, and put $\tau:=Q\sigma\ge\smin$. For $b\in W$ define
+\[
+F_b:=\Delta_b\prod_{\lambda\in\Bg_b(\tau)}\bigl(\dd yb^2-\lambda^2\bigr)\ \text{ if }|\Bg_b(\tau)|\le1\ \text{(case B)},\qquad
+F_b:=\Delta_b\,\bigl(\dd yb^2-\rho_1^2\bigr)\bigl(\dd yb^2-\rho_2^2\bigr)\ \text{ otherwise (case A)},
+\]
+where in case A, $\rho_1\ne\rho_2$ are two elements of $\Bg_b(\tau)$. In both cases $F_b$ is a product of at most
+$e_j=2+2j+\binom j2$ affine functions of the lifted coordinates, and $F_b(b)\ne0$.
+
+\emph{Claim: for each $b\in W$, at most $\max(\Gamma_{j+1}Q\sigma,e_A)+(j^2+2n)\sigma$ points $x\in W\setminus\{b\}$
+have $F_b(x)\ne0$.} In case B, the proof of the claim in Lemma~\ref{lem:kill} (with $K=1$ and $\tau=Q\sigma$) gives
+fewer than $\Gamma_{j+1}Q\sigma+j^2\sigma$ such points. In case A, $F_b(x)\ne0$ implies $\dd xb\notin\{\rho_1,\rho_2\}$
+and $\Delta_b(x)\ne0$, i.e.\ $x\in A$, and Lemma~\ref{lem:stepA} gives at most $e_A+(j^2+2(n-4))\sigma$ points.
+
+As in the proof of Lemma~\ref{lem:kill}, Caro--Wei and Lemma~H give
+$|W|\le P^+_j\bigl(2\max(\Gamma_{j+1}Q\sigma,e_A)+2(j^2+2n)\sigma+1\bigr)$. Since $e_A\le\sigma\le Q\Gamma_{j+1}\sigma$
+and $1\le\sigma$ by~\eqref{eq:absorb}, we get $|W|\le P^+_j(2Q\Gamma_{j+1}+2(j^2+2n)+1)\sigma=\Gamma_j\sigma$. \qed
+
+\begin{remark}
+For $n=4$ the levels $j=2,1,0$ are all covered by Theorem~\ref{thm:Rplus}. In that case $S'=\emptyset$, the sets
+$\Sm_\nu(a)$ are empty, and the cost $n(n-4)\sigma$ in~\eqref{eq:S2} vanishes. Claim$(0)$ then follows directly,
+and Sections~\ref{sec:core} and~\ref{sec:slicing} are not needed.
+\end{remark}

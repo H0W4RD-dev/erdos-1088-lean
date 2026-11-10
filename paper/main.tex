@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+% ---------------------------------------------------------------- theorems
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{convention}[theorem]{Convention}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------- macros
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Sph}{\mathrm{S}}          % sphere S(c,t); S(c,U) union over radii U
+\newcommand{\Bis}{\mathrm{H}}          % perpendicular bisector H(p,q)
+\newcommand{\Dist}{\mathcal{D}}        % set of pairwise distances
+\newcommand{\Bg}{\mathrm{Big}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\aff}{\operatorname{aff}}
+\newcommand{\dirsp}{\operatorname{dir}}
+\newcommand{\Hyp}{\mathrm{Hyp}}
+\newcommand{\Sm}{\mathrm{Sm}}
+\newcommand{\Good}{\mathrm{Good}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Ex}{\mathrm{Ex}}
+\newcommand{\Ty}{\mathrm{Ty}}
+\newcommand{\Lst}{L^{\ast}}            % L_{k*}(D+2)
+\newcommand{\kst}{k^{\ast}}
+\newcommand{\smin}{\sigma_{\min}}
+\newcommand{\dd}[2]{|#1#2|}            % distance |xy|
+\newcommand{\binomc}[2]{\tbinom{#1}{#2}}
+\newcommand{\eps}{\varepsilon}
+
+\title{Subexponential bounds for distinct-distance subsets:\\
+$f_d(n)=2^{O_n(\sqrt d\,\log d)}$ for every fixed $n$\\[4pt]
+\large (an affirmative answer to Erd\H{o}s Problem \#1088, subject to expert verification)}
+
+\author{%
+\textbf{[PLACEHOLDER AUTHOR LIST --- to be confirmed by the team]}\\[4pt]
+Will Howe (H0W4RD-dev), directing the work\\[2pt]
+\small The mathematics was developed by AI agents (Claude, Anthropic) in sessions directed by the team;\\
+\small see the statement on AI assistance and verification in Section~\ref{sec:ai}.}
+
+\date{Draft manuscript, \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For integers $n\ge 3$ and $d\ge 1$ let $f_d(n)$ be the least $m$ such that every set of $m$ points in $\R^d$
+contains $n$ points whose $\binom n2$ pairwise distances are all distinct. Erd\H{o}s asked whether
+$f_d(n)=2^{o(d)}$ for every fixed $n$; the classical bound is exponential in $d$. We prove that
+$f_d(n)\le 2^{C_n\sqrt d\,\log(d+2)}$ for every fixed $n\ge 3$, which would answer the question
+affirmatively. The main new tool is a rank--rectangle theorem (Theorem~LR): if every entry of a real matrix of
+rank $r$ equals one of $k$ prescribed functions, each depending only on the row or only on the column, then
+there is a rectangle of relative size $2^{-O(k^3\sqrt{r}\log r)}$ in each direction on which a single one of these
+functions describes all entries. Its proof combines Rothvoss's hyperplane-rounding proof of Lovett's
+bound with a rescaling at the largest gap and a cleaning step. The geometric part of the argument is a
+downward induction over ``levels'' (rainbow sets $S$ together with a ground set $W$ of points extending $S$),
+with a polynomial-method kill step at each level and a structural class-count statement proved by repeated use
+of Theorem~LR. \emph{Verification status:} every step was written out and checked by independent AI referee
+passes. The whole argument has also been formalized in Lean~4 with Mathlib. The formalization proves the statement
+\texttt{Erdos1088.erdos\_1088} of the Google DeepMind \emph{formal-conjectures} repository verbatim, using only
+Lean's standard axioms (Section~\ref{sec:lean}). No human expert has reviewed the informal argument yet.
+See Section~\ref{sec:ai}.
+\end{abstract}
+
+\tableofcontents
+
+\input{sec01_intro}
+\input{sec02_structure}
+\input{sec03_prelim}
+\input{sec04_LR}
+\input{sec05_G1}
+\input{sec06_framework}
+\input{sec07_top}
+\input{sec08_core}
+\input{sec09_slicing}
+\input{sec10_main}
+\input{sec11_concluding}
+\input{sec11b_lean}
+\input{sec12_ai}
+\input{refs}
+
+\end{document}

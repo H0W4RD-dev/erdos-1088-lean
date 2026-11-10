@@ -1,0 +1,322 @@
+% ====================================================================
+\section{Rainbow families and the Core Lemma}\label{sec:core}
+% ====================================================================
+
+Throughout Sections~\ref{sec:core} and~\ref{sec:slicing}, $n\ge5$, $0\le r\le n-5$, and $(S,W,\sigma)$ is a fixed level-$r$
+configuration with $\sigma\ge\smin$. We assume that the conclusion of Lemma~\ref{lem:HR} holds for $(S,W,\sigma)$
+with some constant $\Gamma'\ge1$; we refer to this as \textbf{HR$_r$}. For $c\in W$, $R_c=\Dist(S)\cup\{\dd cs:s\in S\}$
+has at most $\binom r2+r$ elements. Recall from~\eqref{eq:absorb} that $\mu\le e\le\sigma$.
+
+\subsection{Rainbow families}
+
+\begin{definition}[rainbow family at level $r$]\label{def:family}
+A \emph{rainbow family} $\mathcal F=(B,(C_k,\beta(k))_{k\in I})$ consists of a set $B=\{b_1,\dots,b_p\}\subseteq X$
+with $p\ge1$, a finite index set $I$, and for each $k\in I$ a nonempty set $C_k\subseteq W$ and a $p$-tuple
+$\beta(k)=(\beta_1(k),\dots,\beta_p(k))$ of positive reals, such that:
+\begin{enumerate}[label=(F\arabic*)]
+\item $S\cap B=\emptyset$ and $S\cup B$ is rainbow;
+\item $\dd x{b_i}=\beta_i(k)$ for all $k\in I$, $x\in C_k$ and $i\le p$;
+\item the $p|I|$ numbers $\beta_i(k)$ ($i\le p$, $k\in I$) are pairwise distinct, and none of them lies in
+  $\Dist(S\cup B)$;
+\item for all $k\in I$ and $x\in C_k$: $x\notin S\cup B$ and $S\cup B\cup\{x\}$ is rainbow;
+\item $\dd xs\notin\beta(I):=\{\beta_i(k'):i\le p,\ k'\in I\}$ for all $x\in\bigcup_kC_k$ and $s\in S$.
+\end{enumerate}
+We write $M(\mathcal F):=\min_k|C_k|$, and also use $\beta(k)$ for the \emph{set} of its $p$ values.
+\end{definition}
+
+The classes $C_k$ are pairwise disjoint, since they lie on spheres about $b_1$ with distinct radii
+$\beta_1(k)$, and they are disjoint from $S\cup B$. Passing to a subset $I'\subseteq I$, and to nonempty subsets
+$C'_k\subseteq C_k$, preserves (F1)--(F5).
+
+\subsection{Constants}
+Let $p:=n-4-r$ and let $t,w_1,w_2,k_3,k_4,k_5,k_c$ be as in Definition~\ref{def:typecounts}. Put
+\[
+\theta_{\mathrm{rel}}(w):=\frac{1}{32\,\Gamma'(D+2)^{k_4(w)}},\qquad
+\eps:=\frac{\theta_{\mathrm{rel}}(w_2)}{96\,(D+2)^{k_3(w_2)}},\qquad
+\hat M_{\mathrm{core}}:=2^{20}4^nn^2\Gamma'^2(D+2)^{2k_c},\qquad M_{\mathrm{core}}:=\hat M_{\mathrm{core}}\,\sigma .
+\]
+
+\begin{theorem}[Core Lemma]\label{thm:core}
+Assume HR$_r$ with constant $\Gamma'$. There is no rainbow family at level $r$ with $p=|B|=n-4-r$, $|I|\ge12$ and
+$M(\mathcal F)\ge M_{\mathrm{core}}$.
+\end{theorem}
+
+The rest of this section proves Theorem~\ref{thm:core}. Suppose $\mathcal F$ is such a family; discarding indices
+we may assume $|I|=12$. Put $M:=M(\mathcal F)\ge M_{\mathrm{core}}$ and
+\[
+\delta_1:=\frac{2\cdot4^{n-2}\mu}{\eps M}+\frac{3n^2\sigma}{M}.
+\]
+
+\begin{lemma}[parameter inequalities]\label{lem:params-core}
+\begin{enumerate}[label=(P\arabic*)]
+\item $\delta_1\le\theta_{\mathrm{rel}}(w_1)/(16(D+2)^{k_3(w_1)})=1/(2^9\Gamma'(D+2)^{k_c})$;
+\item $2n^2\sigma\le\eps M$;
+\item $6\eps=\theta_{\mathrm{rel}}(w_2)/(16(D+2)^{k_3(w_2)})$;
+\item $M\ge32(D+2)^{k_4(w_1)}\Gamma'(r+1)\sigma$;
+\item $M\ge80n^2(D+2)^{k_5}\sigma$;
+\item $M\ge\sigma\ge e>2^{\Lst+1}h$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(P3) is the definition of $\eps$, and (P6) follows from~\eqref{eq:absorb}. We have
+$1/\eps=96\cdot32\,\Gamma'(D+2)^{k_3(w_2)+k_4(w_2)}\le3\cdot2^{10}\Gamma'(D+2)^{k_c}$. For (P1), the first term of
+$\delta_1$ is at most $6\cdot2^{10}\,4^{n-2}\Gamma'(D+2)^{k_c}\sigma/M$, using $\mu\le\sigma$. This is at most
+$1/(2^{10}\Gamma'(D+2)^{k_c})$ because $M\ge M_{\mathrm{core}}\ge6\cdot2^{20}4^{n-2}\Gamma'^2(D+2)^{2k_c}\sigma$. The
+second term is at most $1/(2^{10}\Gamma'(D+2)^{k_c})$ because $M\ge3\cdot2^{10}n^2\Gamma'(D+2)^{k_c}\sigma$.
+(P2) holds because $M\ge6\cdot2^{10}n^2\Gamma'(D+2)^{k_c}\sigma\ge2n^2\sigma/\eps$. (P4) and (P5) hold because
+$k_4(w_1),k_5\le k_c$, $r+1\le n$ and $\Gamma'\ge1$.
+\end{proof}
+
+\subsection{Notation for two auxiliary points}
+Fix $l\ne m$ in $I$. For $a_1\in C_l$ and $a_2\in C_m$ put $T=T(a_1,a_2):=S\cup B\cup\{a_1,a_2\}$. These are $n-2$
+distinct points, since $r+p=n-4$, $a_1\ne a_2$, and $a_1,a_2\notin S\cup B$ by (F4). For $x\notin T$ let
+$L_x:=\{\dd xy:y\in T\}$. For $x\in C_k$ we have $L_x=\{\dd xs\}_{s\in S}\cup\beta(k)\cup\{\dd x{a_1},\dd x{a_2}\}$ by (F2).
+Let $Y_T$ be the set of $T$-generic points, and put
+\[
+\Hyp(a_1,a_2):=\bigcup_{s\in S,\,i=1,2}\Bis(s,a_i),\qquad
+\Sm(a_1,a_2):=\bigcup_{s\in S}\Sph\bigl(s,\{\dd{a_i}{s'}:i=1,2,\ s'\in S\}\cup\{\dd{a_1}{a_2}\}\bigr).
+\]
+Both are empty if $r=0$. $\Sm$ is a union of $r(2r+1)$ spheres about points of $S$, so it meets $W$ in fewer than
+$r(2r+1)\sigma\le2n^2\sigma$ points. By (F2),
+\begin{equation}\label{eq:DT}
+\Dist(T)=\Dist(S\cup B)\cup\{\dd{a_i}s:i=1,2,\ s\in S\}\cup\beta(l)\cup\beta(m)\cup\{\dd{a_1}{a_2}\},\qquad|\Dist(T)|\le t .
+\end{equation}
+
+\begin{definition}[validity]\label{def:valid}
+A pair $(k,k')$ is \emph{valid for $(a_1,a_2)$} if $k\ne k'$ are in $I\setminus\{l,m\}$, $T(a_1,a_2)$ is rainbow,
+and $(\beta(k)\cup\beta(k'))\cap\Dist(T)=\emptyset$.
+\end{definition}
+
+Validity is used only in Steps~0--2, to obtain the inclusions there. The properties $\Good_k$ and $\Cov_k$ defined
+below are properties of \emph{arbitrary} pairs $(a_1,a_2)\in C_l\times C_m$. Steps~3--5 count them over all of
+$C_l\times C_m$, and validity enters Step~5 only through the set $V_{lm}$ of pairs on which it holds
+(referee item~F).
+
+\subsection{Step 0: non-generic loci}
+
+\begin{lemma}[Step 0]\label{lem:step0}
+Let $T$ be rainbow, $k\in I\setminus\{l,m\}$ and $\beta(k)\cap\Dist(T)=\emptyset$. Every $x\in C_k\setminus Y_T$ lies in
+\[
+\Sph\bigl(a_1,\Dist(T)\cup\beta(k)\bigr)\cup\Sph\bigl(a_2,\Dist(T)\cup\beta(k)\bigr)\cup\Bis(a_1,a_2)\cup\Hyp(a_1,a_2)\cup\Sm(a_1,a_2).
+\]
+\end{lemma}
+\begin{proof}
+First, $x\notin T$, because $C_k$ is disjoint from $S\cup B$, $C_l$ and $C_m$. We list the possible coincidences
+among $\Dist(T)\cup L_x$. $\Dist(T)$ is rainbow. Equalities among the $\dd xs$ and $\beta(k)$, or between these
+and $\Dist(S\cup B)$, are excluded by (F4) and (F3). The case $\dd xs\in\beta(l)\cup\beta(m)$ is excluded by (F5).
+Equalities $\dd xs\in\{\dd{a_i}{s'},\dd{a_1}{a_2}\}$ give $\Sm$. An equality $\dd xs=\dd x{a_i}$ gives $\Hyp$. An
+equality $\dd x{a_i}\in\Dist(T)\cup\beta(k)$ gives a sphere about $a_i$, and $\dd x{a_1}=\dd x{a_2}$ gives
+$\Bis(a_1,a_2)$. Finally $\beta(k)\cap\Dist(T)=\emptyset$ by hypothesis.
+\end{proof}
+
+\subsection{Step 1: a trichotomy}
+For $k\in I\setminus\{l,m\}$ put
+\[
+\Lambda_k(a_1,a_2):=\Sph\bigl(a_1,\Dist(T)\cup\beta(k)\bigr)\cup\Sph\bigl(a_2,\Dist(T)\cup\beta(k)\bigr)\cup\Bis(a_1,a_2)\cup\Hyp(a_1,a_2).
+\]
+
+\begin{definition}[$\Good$]\label{def:good}
+$\Good_k(a_1,a_2)$ holds if there are a set $\Omega$ of at most $w_1$ positive reals and a set $\Ex\subseteq C_k$
+with $|\Ex|\le\delta_1|C_k|$ such that
+$C_k\subseteq\Sph(a_1,\Omega)\cup\Sph(a_2,\Omega)\cup\Bis(a_1,a_2)\cup\Hyp(a_1,a_2)\cup\Ex$.
+\end{definition}
+
+\begin{lemma}[Step 1]\label{lem:step1}
+Let $(k,k')$ be valid for $(a_1,a_2)$. Then $\Good_k(a_1,a_2)$ holds, or
+\[
+\bigl|C_{k'}\setminus\bigl(\Lambda_{k'}(a_1,a_2)\cup\Sph(a_1,\beta(k))\cup\Sph(a_2,\beta(k))\bigr)\bigr|<2\eps|C_{k'}|.
+\tag*{(ii)$_{k,k'}$}
+\]
+\end{lemma}
+\begin{proof}
+Put $P:=C_k\cap Y_T$, $Q:=C_{k'}\cap Y_T$ and $Q':=\{w\in Q:L_w\cap\beta(k)=\emptyset\}$.
+
+\emph{Case $|Q'|\ge\eps|C_{k'}|$.} $P$ and $Q'$ are disjoint subsets of $Y_T$. By Corollary~\ref{cor:G1}(b), at most
+$4^{n-2}\mu(|C_k|+|C_{k'}|)$ pairs $(w,x)\in Q'\times P$ are label-disjoint. So some $w_0\in Q'$ is label-disjoint
+from at most $\mathrm{ex}:=4^{n-2}\mu(|C_k|+|C_{k'}|)/(\eps|C_{k'}|)$ points of $P$. Let $x\in P$ be any other point,
+so that $L_x\cap L_{w_0}\ne\emptyset$. Now $\beta(k)\cap L_{w_0}=\emptyset$, because $\beta(k)\cap\beta(k')=\emptyset$ (F3),
+$\dd{w_0}s\notin\beta(k)$ (F5), and $w_0\in Q'$. So the common value is $\dd xs$ for some $s$, or $\dd x{a_i}$
+for some $i$, and it lies in $L_{w_0}$. If it is $\dd xs$, then $\dd xs\notin\beta(k')$ by (F5), so
+$\dd xs\in\{\dd{w_0}{s'}\}_{s'}\cup\{\dd{w_0}{a_1},\dd{w_0}{a_2}\}$, and $x$ lies on one of $r(r+2)$ spheres about
+points of $S$. If it is $\dd x{a_i}$, then $x\in\Sph(a_i,L_{w_0})$. Combining this with Lemma~\ref{lem:step0}, $C_k$ is
+covered as in Definition~\ref{def:good} with $\Omega:=L_{w_0}\cup\Dist(T)\cup\beta(k)$, where
+$|\Omega|\le(n-2)+t+p=w_1$, and with $\Ex$ consisting of the at most $\mathrm{ex}$ label-disjoint partners, the
+fewer than $r(r+2)\sigma$ points on the spheres just described, and the fewer than $r(2r+1)\sigma$ points of
+$C_k\cap\Sm$. Since $|C_k|,|C_{k'}|\ge M$,
+\[
+|\Ex|\le\Bigl(\frac{4^{n-2}\mu}{\eps}\Bigl(\frac1{|C_{k'}|}+\frac1{|C_k|}\Bigr)+\frac{3n^2\sigma}{M}\Bigr)|C_k|\le\delta_1|C_k|,
+\]
+so $\Good_k(a_1,a_2)$ holds.
+
+\emph{Case $|Q'|<\eps|C_{k'}|$.} By Lemma~\ref{lem:step0} applied to $k'$ (valid since $\beta(k')\cap\Dist(T)=\emptyset$),
+$C_{k'}\setminus Q\subseteq\Lambda_{k'}\cup\Sm$. If $w\in Q\setminus Q'$, then $L_w\cap\beta(k)\ne\emptyset$. Since
+$\dd ws\notin\beta(k)$ (F5) and $\beta(k')\cap\beta(k)=\emptyset$ (F3), this means $\dd w{a_i}\in\beta(k)$ for some
+$i$, i.e.\ $w\in\Sph(a_1,\beta(k))\cup\Sph(a_2,\beta(k))$. Hence the set in (ii)$_{k,k'}$ is contained in
+$Q'\cup(C_{k'}\cap\Sm)$, which has fewer than $\eps|C_{k'}|+2n^2\sigma\le2\eps|C_{k'}|$ points, by (P2).
+\end{proof}
+
+\subsection{Step 2: summing over $k$}
+
+\begin{lemma}[Step 2]\label{lem:step2}
+Fix $a_1,a_2$ and $k'\in I\setminus\{l,m\}$. Let $J\subseteq I\setminus\{l,m,k'\}$ with $|J|\ge3$ be such that, for every
+$k\in J$, $(k,k')$ is valid and (ii)$_{k,k'}$ holds. Then
+\[
+\Cov_{k'}(a_1,a_2):\qquad |C_{k'}\setminus\Lambda_{k'}(a_1,a_2)|<6\eps|C_{k'}| .
+\]
+\end{lemma}
+\begin{proof}
+Let $c:=|C_{k'}\setminus\Lambda_{k'}|$ and assume $c\ge2\eps|C_{k'}|$. For each $k\in J$, by (ii)$_{k,k'}$, more than
+$c-2\eps|C_{k'}|$ points of $C_{k'}\setminus\Lambda_{k'}$ lie in $\Sph(a_1,\beta(k))\cup\Sph(a_2,\beta(k))$. By (F3) the
+radius sets $\beta(k)$, $k\in J$, are pairwise disjoint, so the sets $\Sph(a_1,\beta(k))$, $k\in J$, are pairwise
+disjoint, and likewise for $a_2$. Summing over $J$ gives $|J|(c-2\eps|C_{k'}|)<2c$, i.e.\
+$c(|J|-2)<2|J|\eps|C_{k'}|$, so $c<6\eps|C_{k'}|$ as $|J|\ge3$.
+\end{proof}
+
+Note that $\Cov_{k'}(a_1,a_2)$ has the shape of $\Good_{k'}(a_1,a_2)$ with $\Omega:=\Dist(T)\cup\beta(k')$, so that
+$|\Omega|\le t+p=w_2$, and $\Ex:=C_{k'}\setminus\Lambda_{k'}$, so that $|\Ex|<6\eps|C_{k'}|$. Here $\Omega$ depends on $(a_1,a_2)$
+through $\Dist(T)$.
+
+\subsection{Step 3: the two-centre lemma}
+
+\begin{definition}[$w$-few]\label{def:wfew}
+Let $j\in I\setminus\{l,m\}$, $w\in\{w_1,w_2\}$ and $a_2\in C_m$. Put $\theta_w:=\max(\theta_{\mathrm{rel}}(w)|C_j|,\sigma)$ and
+$\theta'_w:=\theta_w+r\sigma$. We say that \emph{$a_2$ is $w$-few on $C_j$} if there is a set $\Xi$ of at most
+$w+r+\binom r2$ positive reals with
+\[
+\Bigl|C_j\setminus\Bigl(\Sph(a_2,\Xi)\cup\bigcup_{s\in S}\Bis(a_2,s)\Bigr)\Bigr|\le\Gamma'\theta'_w .
+\]
+This property depends only on $(a_2,j,w)$.
+\end{definition}
+
+\begin{lemma}[Step 3, two-centre lemma]\label{lem:step3}
+Let $j\in I\setminus\{l,m\}$, $a_2\in C_m$, $w\in\{w_1,w_2\}$ and $0<\delta\le\theta_{\mathrm{rel}}(w)/(16(D+2)^{k_3(w)})$. Let
+$Z\subseteq C_l$, and suppose that for each $a_1\in Z$ there are a set $\Omega(a_1)$ of at most $w$ positive reals and a
+set $\Ex(a_1)\subseteq C_j$ with $|\Ex(a_1)|\le\delta|C_j|$ such that
+\[
+C_j\subseteq\Sph(a_1,\Omega(a_1))\cup\Sph(a_2,\Omega(a_1))\cup\Bis(a_1,a_2)\cup\Hyp(a_1,a_2)\cup\Ex(a_1).
+\]
+If $a_2$ is not $w$-few on $C_j$, then $|Z|\le(w+1)e$.
+\end{lemma}
+\begin{proof}
+For a real $\lambda>0$ let $R_\lambda:=(C_j\cap\Sph(a_2,\lambda))\setminus\bigcup_{s\in S}\Sph(s,\lambda)$ and
+$Z_\lambda:=\{a_1\in Z:\lambda\notin\Omega(a_1)\}$. Let $a_1\in Z_\lambda$ and $x\in R_\lambda\setminus\Ex(a_1)$. Then
+$x\notin\Sph(a_2,\Omega(a_1))$, since $\dd x{a_2}=\lambda\notin\Omega(a_1)$. Also $x\notin\Bis(s,a_2)$, since otherwise
+$\dd xs=\lambda$. If $x\in\Bis(a_1,a_2)$ then $\dd x{a_1}=\lambda$, and if $x\in\Bis(s,a_1)$ then $\dd x{a_1}=\dd xs$.
+Hence
+\begin{equation}\label{eq:31}
+\dd x{a_1}^2\in\{v^2:v\in\Omega(a_1)\}\cup\{\lambda^2\}\cup\{\dd xs^2:s\in S\}\qquad(x\in R_\lambda\setminus\Ex(a_1)).
+\end{equation}
+\emph{Claim: if $|R_\lambda|\ge\theta_w$, then $|Z_\lambda|\le e$.} Take rows $R_\lambda$ and columns $Z_\lambda$; they are
+disjoint, as $C_j\cap C_l=\emptyset$. List $\Omega(a_1)$ as $v_1(a_1),\dots,v_w(a_1)$, repeating entries if necessary, and put
+\[
+\mathcal B[x,a_1]:=\prod_{i\le w}\bigl(\dd x{a_1}^2-v_i(a_1)^2\bigr)\cdot\bigl(\dd x{a_1}^2-\lambda^2\bigr)\cdot\prod_{s\in S}\bigl(\dd x{a_1}^2-\dd xs^2\bigr).
+\]
+This is a product of $k_3(w)=w+1+r$ factors, so $\rk\mathcal B\le(D+2)^{k_3(w)}$. By~\eqref{eq:31}, column $a_1$ has nonzero
+entries only in $\Ex(a_1)$, hence at most $\delta|C_j|\le\theta_{\mathrm{rel}}(w)|C_j|/(16(D+2)^{k_3(w)})\le|R_\lambda|/(16(D+2)^{k_3(w)})$
+of them. Lemma~\ref{lem:GL} gives $R''\times Z''$ with $|R''|\ge|R_\lambda|/2$, $|Z''|\ge|Z_\lambda|/2$ and $\mathcal B=0$ there.
+On $R''\times Z''$ the matrix $[\dd x{a_1}^2]$ is covered by $k_3(w)\le\kst$ types: the column functions $v_i(a_1)^2$, the
+constant $\lambda^2$, and the row functions $\dd xs^2$. Theorem~\ref{thm:LR} and Lemma~\ref{lem:typeOR} (note
+$S\cap Z''=\emptyset$) give $R'''\times Z'''$ with $\min(|R'''|,|Z'''|)\le h$, where
+$|R'''|\ge2^{-\Lst}|R_\lambda|/2\ge2^{-\Lst-1}\sigma>h$ by (P6). So $|Z'''|\le h$, hence $|Z''|\le2^{\Lst}h$ and
+$|Z_\lambda|\le2^{\Lst+1}h\le e$.
+
+Suppose first that there are $w+1$ distinct radii $\lambda_1,\dots,\lambda_{w+1}$ with $|R_{\lambda_i}|\ge\theta_w$. Since
+$|\Omega(a_1)|\le w$, every $a_1\in Z$ lies in some $Z_{\lambda_i}$, so $|Z|\le(w+1)e$. Otherwise let $\Xi_h$ be the set of
+the at most $w$ radii with $|R_\lambda|\ge\theta_w$, and put $\Xi:=\Xi_h\cup R_{a_2}$, so that $|\Xi|\le w+r+\binom r2$. Let
+$x\in C_j$ with $x\notin\bigcup_s\Bis(a_2,s)$ and $\lambda:=\dd x{a_2}\notin\Xi$. Then $|R_\lambda|<\theta_w$, so
+$|C_j\cap\Sph(a_2,\lambda)|<\theta_w+r\sigma=\theta'_w$, because the spheres $\Sph(s,\lambda)$, $s\in S$, meet $W$ in fewer than
+$r\sigma$ points in total. Apply HR$_r$ with $c:=a_2\in W$, $V:=C_j\subseteq W\setminus\{a_2\}$ and threshold
+$\theta'_w\ge\sigma$. Since $\lambda\notin R_{a_2}$, every such $x$ is counted there, so there are at most $\Gamma'\theta'_w$ of
+them. Hence $a_2$ is $w$-few on $C_j$.
+\end{proof}
+
+So Lemma~\ref{lem:step3} says: \emph{if $a_2$ is not $w$-few on $C_j$, then $|Z|\le(w+1)e$} (referee item~X4).
+
+\subsection{Step 4: few $w$-few centres}
+
+\begin{lemma}[Step 4]\label{lem:step4}
+For $j\in I\setminus\{l,m\}$ and $w\in\{w_1,w_2\}$, the set $F$ of points $a_2\in C_m$ that are $w$-few on $C_j$ has $|F|\le e$.
+\end{lemma}
+\begin{proof}
+Take rows $C_j$ and columns $F$ (disjoint). For $a_2\in F$ let $\Xi(a_2)$ be as in Definition~\ref{def:wfew}, padded to
+exactly $w+r+\binom r2$ entries, and put
+$\mathcal B[x,a_2]:=\prod_{v\in\Xi(a_2)}(\dd x{a_2}^2-v^2)\prod_{s\in S}(\dd x{a_2}^2-\dd xs^2)$. This is a product of
+$k_4(w)$ factors, so $\rk\mathcal B\le(D+2)^{k_4(w)}$. Column $a_2$ has at most $\Gamma'\theta'_w$ nonzero entries, and
+\[
+\Gamma'\theta'_w\le\Gamma'\theta_{\mathrm{rel}}(w)|C_j|+\Gamma'(r+1)\sigma\le\frac{|C_j|}{32(D+2)^{k_4(w)}}+\frac{|C_j|}{32(D+2)^{k_4(w)}},
+\]
+by the definition of $\theta_{\mathrm{rel}}$ and (P4) (as $k_4(w)\le k_4(w_1)$). Lemma~\ref{lem:GL} gives a zero rectangle
+$C''\times F''$ with halves. There $[\dd x{a_2}^2]$ is covered by $k_4(w)\le\kst$ types: the column functions $a_2\mapsto v(a_2)^2$
+given by the (padded) entries $v$ of $\Xi(a_2)$, and the row functions $\dd xs^2$. Theorem~\ref{thm:LR} and Lemma~\ref{lem:typeOR} give a rectangle with
+$\min\le h$, whose row side is at least $2^{-\Lst}|C_j|/2>h$ by (P6). So $|F''|\le2^{\Lst}h$ and $|F|\le e$.
+\end{proof}
+
+\begin{corollary}\label{cor:step34}
+Let $j\in I\setminus\{l,m\}$, $w\in\{w_1,w_2\}$ and $\delta$ be as in Lemma~\ref{lem:step3}, and suppose that for every
+$a_2\in C_m$ the set $Z(a_2)\subseteq C_l$ satisfies the hypothesis of Lemma~\ref{lem:step3}. Then
+$\sum_{a_2\in C_m}|Z(a_2)|\le e|C_l|+(w+1)e|C_m|$.
+\end{corollary}
+\begin{proof}
+The at most $e$ points $a_2$ that are $w$-few on $C_j$ (Lemma~\ref{lem:step4}) contribute at most $|C_l|$ each. Every other
+$a_2$ contributes at most $(w+1)e$, by Lemma~\ref{lem:step3}.
+\end{proof}
+
+We apply Corollary~\ref{cor:step34} in two ways, for each $j\in I\setminus\{l,m\}$:
+\begin{enumerate}[label=(\alph*)]
+\item $Z(a_2):=\{a_1\in C_l:\Good_j(a_1,a_2)\}$, with $w=w_1$ and $\delta=\delta_1$, which is admissible by (P1). This gives
+  $|\{(a_1,a_2):\Good_j(a_1,a_2)\}|\le e|C_l|+(w_1+1)e|C_m|$.
+\item $Z(a_2):=\{a_1\in C_l:\Cov_j(a_1,a_2)\}$, with $w=w_2$ and $\delta=6\eps$, which is admissible by (P3); see the
+  remark after Lemma~\ref{lem:step2}. This gives $|\{(a_1,a_2):\Cov_j(a_1,a_2)\}|\le e|C_l|+(w_2+1)e|C_m|$.
+\end{enumerate}
+
+\subsection{Step 5: counting, and the contradiction}
+Let $\Pi$ be the set of pairs $(a_1,a_2)\in C_l\times C_m$ with $\dd{a_1}s=\dd{a_2}{s'}$ for some $s,s'\in S$. For fixed $a_2$,
+fewer than $r^2\sigma$ points $a_1$ qualify (cap), so $|\Pi|<r^2\sigma|C_m|$; and $\Pi=\emptyset$ if $r=0$. Put
+\[
+\Ty(a_1,a_2):=\Dist(S\cup B)\cup\beta(l)\cup\beta(m)\cup\{\dd{a_1}s:s\in S\}\cup\{\dd{a_2}s:s\in S\},
+\]
+a list of at most $\binom{r+p}2+2p+2r=k_5$ numbers, and $V_{lm}:=\{(a_1,a_2)\notin\Pi:\dd{a_1}{a_2}\notin\Ty(a_1,a_2)\}$.
+
+\begin{lemma}\label{lem:51}
+$T(a_1,a_2)$ is rainbow if and only if $(a_1,a_2)\notin\Pi$ and $\dd{a_1}{a_2}\notin\Ty(a_1,a_2)$.
+\end{lemma}
+\begin{proof}
+The distances of $T$ are $\Dist(S\cup B)$, $\dd{a_1}s$, $\beta(l)$, $\dd{a_2}s$, $\beta(m)$ and $\dd{a_1}{a_2}$. The sets
+$S\cup B\cup\{a_i\}$ are rainbow (F4), $\beta(l)\cap\beta(m)=\emptyset$ (F3), and $\dd{a_1}s\notin\beta(m)$ and
+$\dd{a_2}s\notin\beta(l)$ (F5). So the only possible coincidences are $\dd{a_1}s=\dd{a_2}{s'}$ (that is, $\Pi$) and
+$\dd{a_1}{a_2}\in\Ty$.
+\end{proof}
+
+Let $(a_1,a_2)\in V_{lm}$. Then $T$ is rainbow. By (F3) at most one index $k^\bullet\in I$ has $\dd{a_1}{a_2}\in\beta(k^\bullet)$,
+and $k^\bullet\notin\{l,m\}$ since $\beta(l)\cup\beta(m)\subseteq\Ty$. Put $I_0:=I\setminus\{l,m,k^\bullet\}$, so $|I_0|\ge9$. For
+$k\in I_0$ we have $\beta(k)\cap\Dist(T)=\emptyset$ by~\eqref{eq:DT}, (F3), (F5) and $k\ne k^\bullet$. Hence every
+$(k,k')$ with $k\ne k'$ in $I_0$ is valid. Let $g:=|\{k\in I_0:\Good_k(a_1,a_2)\}|$. If $g\le|I_0|-4$, then for each
+$k'\in I_0$ the set $J:=\{k\in I_0\setminus\{k'\}:\text{not }\Good_k(a_1,a_2)\}$ has $|J|\ge3$, and (ii)$_{k,k'}$ holds for
+$k\in J$ by Lemma~\ref{lem:step1}; so $\Cov_{k'}(a_1,a_2)$ holds by Lemma~\ref{lem:step2}, for every $k'\in I_0$. In either case
+\[
+|\{k\in I\setminus\{l,m\}:\Good_k(a_1,a_2)\}|+|\{k\in I\setminus\{l,m\}:\Cov_k(a_1,a_2)\}|\ge6\qquad((a_1,a_2)\in V_{lm}).
+\]
+Summing over $(a_1,a_2)\in C_l\times C_m$ and applying (a) and (b) to each of the $10$ indices $j\in I\setminus\{l,m\}$,
+\[
+6|V_{lm}|\le10\bigl[2e|C_l|+(w_1+w_2+2)e|C_m|\bigr]\le10(w_1+w_2+2)\,e\,(|C_l|+|C_m|).
+\]
+So the density of $V_{lm}$ in $C_l\times C_m$ is at most $\frac{10}6(w_1+w_2+2)e(\frac1{|C_m|}+\frac1{|C_l|})\le4(w_1+w_2+2)e/M$
+(referee item~B: the factor $10/6$ is the ratio of the number of indices summed, $10$, to the guaranteed count, $6$).
+The density of $\Pi$ is less than $r^2\sigma/|C_l|\le r^2\sigma/M$. Since
+$w_1+w_2+2=n^2-2n-2-2r<n^2$ and $e\le\sigma$, the set $V_{lm}\cup\Pi$ has density at most $5n^2\sigma/M\le1/(16(D+2)^{k_5})$, by (P5).
+
+Now consider $\mathcal B_0[a_1,a_2]:=\prod_{v\in\Ty(a_1,a_2)}(\dd{a_1}{a_2}^2-v^2)$ on $C_l\times C_m$, with $\Ty$ padded to $k_5$
+entries. It has rank at most $(D+2)^{k_5}$, and it vanishes outside $V_{lm}\cup\Pi$. Lemma~\ref{lem:GL} (average form) gives
+$C_l''\times C_m''$ with halves and $\mathcal B_0=0$. There $[\dd{a_1}{a_2}^2]$ is covered by $k_5\le\kst$ types: the constants
+in $\Dist(S\cup B)\cup\beta(l)\cup\beta(m)$, the row functions $\dd{a_1}s^2$ and the column functions $\dd{a_2}s^2$. By
+Theorem~\ref{thm:LR} there is a single-type rectangle $R\times C$ with $|R|\ge2^{-\Lst}|C_l|/2>h$ and
+$|C|\ge2^{-\Lst}|C_m|/2>h$, using (P6). Lemma~\ref{lem:typeOR} (rows $a_1\in R$, columns $a_2\in C$, $S\cap C=\emptyset$) gives
+$\min(|R|,|C|)\le h$, a contradiction. This proves Theorem~\ref{thm:core}. \qed
+
+\begin{remark}
+For $n=5$ and $r=0$ (so $p=1$) the sets $\Hyp$, $\Sm$ and $\Pi$ are empty, $R_{a_2}=\emptyset$, and only column functions
+and constants occur. In this case the proof is the argument for $f_d(5)$ written in the project's round~13 and
+refereed separately (``referee14''), up to the values of the constants. For general $r$ the proof adds
+row types $\dd xs^2$, coming from the bisectors $\Bis(s,a_i)$, and the small classes of points of $S$, whose
+costs are absorbed in $\delta_1$, in $\eps$ and in Step~5.
+\end{remark}

@@ -1,0 +1,160 @@
+% ====================================================================
+\section{Configurations, the relative bound HR and the kill step}\label{sec:framework}
+% ====================================================================
+
+\subsection{Standing assumptions and absolute parameters}
+From now on $n\ge4$ is fixed, $D\ge1$, $X\subset\R^D$ is a finite rainbow-$n$-free set, and
+$h:=s_n(\lfloor D/2\rfloor)$. All parameters below are explicit. Their roles are explained where they are used,
+but they are defined here, so that every later definition refers only to earlier ones.
+
+\begin{definition}[type counts]\label{def:typecounts}
+Put $t:=\binom{n-2}2$ and $k':=t+2n$. For $0\le r\le n-5$ put $p_r:=n-4-r$ and
+\begin{gather*}
+w_1(r):=(n-2)+t+p_r,\quad w_2(r):=t+p_r,\quad k_3(w):=w+1+r,\quad k_4(w):=w+2r+\tbinom r2,\\
+k_5:=\tbinom{n-4}2+2(n-4),\qquad k_c(r):=k_3(w_1(r))+k_4(w_1(r)).
+\end{gather*}
+For $0\le r\le n-5$ and $1\le p\le n-4-r$ put $K^{(r,p)}:=12\cdot6^{\,n-4-r-p}$, and let
+$K_r:=K^{(r,1)}=12\cdot6^{\,n-5-r}$. For $0\le r\le n-6$ and $1\le p\le n-5-r$ put
+\[
+k_{\mathrm{sl}}(r,p):=3K^{(r,p+1)}-1+\tbinom{r+p}2+2p+2r .
+\]
+Let $\kst$ be the maximum of $k'$, of all $k_c(r)$ and of all $k_{\mathrm{sl}}(r,p)$. For $n=4$ only $k'$ is
+defined, and $\kst:=k'$.
+\end{definition}
+
+One checks directly that $k_G\le k'\le\kst$, and that $k_5$, $k_3(w_2)$, $k_4(w_2)$, $k_3(w_1)$, $k_4(w_1)$ are all at
+most $k_c(r)\le\kst$. For instance $k_3(w_1)=\binom{n-4}2+4n-12\ge k_5$, using $r+p_r=n-4$. Also
+$\kst\le 6^{\,n-4}+2n^2$.
+
+\begin{definition}[absolute parameters]\label{def:absolute}
+\[
+\Lst:=L_{\kst}(D+2),\quad \mu:=2^{\Lst}(h+1),\quad e:=2^{\Lst+1}(h+1),\quad e_A:=2^{\Lst+2}(h+1),\quad
+\smin:=2^{\Lst+2+2n}(h+1).
+\]
+\end{definition}
+These depend only on $n$, $D$ and $h$. We shall use the following inequalities, all immediate from the
+definitions (recall $h\ge1$, so $\mu\ge2$):
+\begin{equation}\label{eq:absorb}
+1\le\mu\le e\le e_A\le\smin,\qquad 4^n\mu\le\smin,\qquad 2\cdot4^{n-2}\mu+4\le\smin,\qquad
+e>2^{\Lst+1}h .
+\end{equation}
+Since $\Lst\ge L_{k}(D+2)$ for every $k\le\kst$, any rectangle given by Theorem~\ref{thm:LR} with at most $\kst$ types
+for a matrix of rank at most $D+2$ has both sides of relative size at least $2^{-\Lst}$.
+
+\subsection{Configurations}
+
+\begin{definition}[level-$j$ configuration]\label{def:config}
+Let $0\le j\le n-2$. A \emph{level-$j$ configuration} is a triple $(S,W,\sigma)$ consisting of a rainbow set
+$S\subseteq X$ with $|S|=j$, a set $W\subseteq X\setminus S$ such that $S\cup\{x\}$ is rainbow for every $x\in W$, and a
+real $\sigma>0$ (the \emph{cap}) such that
+\[
+|W\cap\Sph(s,t)|<\sigma\qquad\text{for all }s\in S,\ t>0 .
+\]
+For $j=0$ the cap condition is void, and $(\emptyset,W,\sigma)$ is a configuration for every $W\subseteq X$
+and every $\sigma>0$. For $b\in W$ put
+\[
+R_b:=\Dist(S\cup\{b\})=\Dist(S)\cup\{\dd bs:s\in S\},\qquad
+\Bg_b(\tau):=\{\lambda>0:\lambda\notin R_b,\ |W\cap\Sph(b,\lambda)|\ge\tau\}\quad(\tau>0).
+\]
+\end{definition}
+
+If $(S,W,\sigma)$ is a level-$j$ configuration, $W'\subseteq W$ and $\sigma'\ge\sigma$, then $(S,W',\sigma')$ is
+again a level-$j$ configuration.
+
+\begin{definition}[Claim$(j)$]\label{def:claim}
+For $0\le j\le n-2$ and a real $\Gamma_j\ge1$, \textbf{Claim$(j)$} (with constant $\Gamma_j$) is the statement:
+\emph{every level-$j$ configuration $(S,W,\sigma)$ with $\sigma\ge\smin$ satisfies $|W|\le\Gamma_j\sigma$.}
+\end{definition}
+
+Claim$(j)$ quantifies over \emph{all} configurations and \emph{all} caps $\sigma\ge\smin$, and $\Gamma_j$ does
+not depend on $\sigma$. This uniformity is what allows the lemmas below to apply Claim$(j+1)$ with caps
+other than $\sigma$.
+
+\begin{lemma}[extension]\label{lem:ext}
+Let $(S,W,\sigma)$ be a level-$j$ configuration, and let $b\in W$ and $x\in W\setminus\{b\}$. Suppose that
+$\dd xb\notin R_b$, that $x\notin\bigcup_{s\in S}\Bis(b,s)$, and that $\dd xs\ne\dd b{s'}$ for all $s,s'\in S$.
+Then $S\cup\{b,x\}$ is rainbow. Moreover, at most $j^2\sigma$ points $x\in W$ satisfy $\dd xs=\dd b{s'}$ for some
+$s,s'\in S$; there are no such points if $j=0$.
+\end{lemma}
+\begin{proof}
+The distances of $S\cup\{b,x\}$ are those of $S$, the numbers $\dd bs$ and $\dd xs$ ($s\in S$), and $\dd bx$. The
+sets $\Dist(S)\cup\{\dd bs\}$ and $\Dist(S)\cup\{\dd xs\}$ are rainbow because $b,x\in W$. By hypothesis
+$\dd bs\ne\dd x{s'}$, $\dd bx\notin\Dist(S)\cup\{\dd bs\}$ and $\dd bx\ne\dd xs$, and $b,x\notin S$ are distinct.
+For the second statement: such points lie on one of the $j^2$ spheres $\Sph(s,\dd b{s'})$, each of which meets
+$W$ in fewer than $\sigma$ points.
+\end{proof}
+
+\subsection{The hereditary relative bound}
+
+\begin{lemma}[HR$_r$]\label{lem:HR}
+Let $0\le r\le n-3$ and assume Claim$(r+1)$ with constant $\Gamma_{r+1}$. Put $\Gamma'_r:=\Gamma_{r+1}+r^2$.
+Let $(S,W,\sigma)$ be a level-$r$ configuration with $\sigma\ge\smin$, let $c\in W$, $V\subseteq W\setminus\{c\}$ and
+$\theta\ge\sigma$. Then
+\[
+\Bigl|\Bigl\{x\in V:\ \dd xc\notin R_c,\ x\notin\textstyle\bigcup_{s\in S}\Bis(c,s),\ |V\cap\Sph(c,\dd xc)|<\theta\Bigr\}\Bigr|
+\;\le\;\Gamma'_r\,\theta .
+\]
+\end{lemma}
+\begin{proof}
+Let $V_0$ be the set on the left. Let $V_2$ be the set of $x\in V_0$ with $\dd xs=\dd c{s'}$ for some
+$s,s'\in S$. By Lemma~\ref{lem:ext}, $|V_2|\le r^2\sigma\le r^2\theta$. Put $V_1:=V_0\setminus V_2$. For
+$x\in V_1$ the set $S\cup\{c,x\}$ is rainbow, by Lemma~\ref{lem:ext}. We claim that $(S\cup\{c\},V_1,\theta)$ is a
+level-$(r+1)$ configuration. Indeed, $S\cup\{c\}$ is rainbow because $c\in W$, and $V_1\subseteq X\setminus(S\cup\{c\})$.
+A sphere about $s\in S$ meets $V_1\subseteq W$ in fewer than $\sigma\le\theta$ points. If a sphere $\Sph(c,t)$
+meets $V_1$ in a point $x$, then $t=\dd xc$ and $|V_1\cap\Sph(c,t)|\le|V\cap\Sph(c,\dd xc)|<\theta$. Since
+$\theta\ge\smin$, Claim$(r+1)$ gives $|V_1|\le\Gamma_{r+1}\theta$.
+\end{proof}
+
+\begin{remark}[the bisector exception]\label{rem:bisector}
+Points of $V$ on the bisectors $\Bis(c,s)$ are not controlled by Lemma~\ref{lem:HR}, and neither are points on
+spheres about $c$ with radius in $R_c$. In every application such points are handled by Theorem~\ref{thm:LR}. A
+point $x\in\Bis(c,s)$ satisfies $\dd xc^2=\dd xs^2$, which is a \emph{row type} of the matrix
+$[\dd xc^2]$ (rows $x$, columns $c$). A single-type rectangle of this type has $R\subseteq\Bis(s,c)$ for all its
+columns $c$, so Lemma~\ref{lem:typeOR} applies. The radii in $R_c$ are column functions ($\dd cs$) or constants
+($d\in\Dist(S)$).
+\end{remark}
+
+\subsection{The kill step}
+
+\begin{lemma}[kill step]\label{lem:kill}
+Let $0\le r\le n-3$ and assume Claim$(r+1)$ with constant $\Gamma_{r+1}$. Let $(S,W,\sigma)$ be a level-$r$
+configuration with $\sigma\ge\smin$, let $\tau\ge\sigma$, and let $K\ge0$ be an integer such that
+$|\Bg_b(\tau)|\le K$ for every $b\in W$. Then
+\[
+|W|\le P(K,r)\,\bigl(2\Gamma_{r+1}\tau+2r^2\sigma+1\bigr),\qquad P(K,r):=\binom{D+1+e_{K,r}}{e_{K,r}}^{2},\quad
+e_{K,r}:=K+2r+\tbinom r2 .
+\]
+\end{lemma}
+\begin{proof}
+For $b\in W$ define
+\[
+\Delta_b(y):=\prod_{s\in S}\bigl(\dd yb^2-\dd ys^2\bigr)\prod_{s\in S}\bigl(\dd yb^2-\dd bs^2\bigr)
+\prod_{d\in\Dist(S)}\bigl(\dd yb^2-d^2\bigr),\qquad
+F_b(y):=\Delta_b(y)\prod_{\lambda\in\Bg_b(\tau)}\bigl(\dd yb^2-\lambda^2\bigr).
+\]
+$F_b$ is a product of at most $e_{K,r}$ affine functions of the lifted coordinates, so by Lemma~\ref{lem:DIM}
+all $F_b$ lie in one space of dimension $\binom{D+1+e_{K,r}}{e_{K,r}}$. At $y=b$ the factors equal $-\dd bs^2$,
+$-\dd bs^2$, $-d^2$ and $-\lambda^2$, all nonzero (recall $b\notin S$), so $F_b(b)\ne0$.
+
+\emph{Claim: for every $b\in W$, fewer than $\Gamma_{r+1}\tau+r^2\sigma$ points $x\in W\setminus\{b\}$ have
+$F_b(x)\ne0$.} Let $F_b(x)\ne0$. Then $\dd xb\notin\Bg_b(\tau)\cup R_b$ and $x\notin\bigcup_s\Bis(b,s)$. By
+Lemma~\ref{lem:ext}, either $x$ is one of at most $r^2\sigma$ points with $\dd xs=\dd b{s'}$, or $S\cup\{b,x\}$ is
+rainbow and $x\in W':=\{x\in W\setminus\{b\}:S\cup\{b,x\}\text{ rainbow},\ \dd xb\notin\Bg_b(\tau)\}$. The triple
+$(S\cup\{b\},W',\tau)$ is a level-$(r+1)$ configuration. Indeed, $S\cup\{b\}$ is rainbow. Spheres about $s\in S$
+meet $W'$ in fewer than $\sigma\le\tau$ points. If $x\in W'\cap\Sph(b,t)$, then $t=\dd xb\notin R_b$, because
+$S\cup\{b,x\}$ is rainbow, and $t\notin\Bg_b(\tau)$; hence $|W'\cap\Sph(b,t)|\le|W\cap\Sph(b,t)|<\tau$. Since
+$\tau\ge\smin$, Claim$(r+1)$ gives $|W'|\le\Gamma_{r+1}\tau$.
+
+Let $G$ be the graph on $W$ in which $\{x,b\}$ is an edge if $F_b(x)\ne0$ and $F_x(b)\ne0$. By the claim,
+$G$ has at most $|W|(\Gamma_{r+1}\tau+r^2\sigma)$ edges, so its average degree is at most
+$2(\Gamma_{r+1}\tau+r^2\sigma)$. By Theorem~\ref{thm:CW}, $G$ has an independent set $I$ with
+$|I|\ge|W|/(2\Gamma_{r+1}\tau+2r^2\sigma+1)$. For distinct $x,y\in I$ we have $F_x(y)=0$ or $F_y(x)=0$, so
+Lemma~\ref{lem:H} gives $|I|\le\binom{D+1+e_{K,r}}{e_{K,r}}^2=P(K,r)$.
+\end{proof}
+
+\begin{remark}[on the constants of Lemma~\ref{lem:kill}]\label{rem:killconst}
+The square in $P(K,r)$ comes from Lemma~H, where a pair is killed from one side only. The term $+1$ comes from
+Caro--Wei. When the lemma is applied with $\tau=\rho\sigma$ for a number $\rho\ge1$, we use $1\le\sigma$
+(by~\eqref{eq:absorb}) to write the bound as $|W|\le P(K,r)(2\rho\Gamma_{r+1}+2r^2+1)\,\sigma$. This is a pure
+multiple of the cap.
+\end{remark}

@@ -1,0 +1,62 @@
+% ====================================================================
+\section{The label lemma and pairs with disjoint labels (G1)}\label{sec:G1}
+% ====================================================================
+
+Throughout this section $n\ge4$, $X\subset\R^D$ is finite and rainbow-$n$-free, and $h=s_n(\lfloor D/2\rfloor)$.
+Let $T\subseteq X$ be a rainbow set with $|T|=n-2$. For $x\notin T$ the \emph{label set} of $x$ is
+$L_x:=\{\dd xt:t\in T\}$. A point $x$ is \emph{$T$-generic} if $x\notin T$ and $T\cup\{x\}$ is rainbow; then
+$|L_x|=n-2$. Let $Y_T$ be the set of $T$-generic points of $X$. Two points $x,w$ are \emph{label-disjoint} if
+$L_x\cap L_w=\emptyset$. Put
+\[
+k_G:=\binom{n-2}{2}+2(n-2),\qquad \mu_G:=2^{L_{k_G}(D+2)}(h+1).
+\]
+
+\begin{lemma}[label lemma]\label{lem:label}
+If $x,w\in Y_T$ are label-disjoint, then $x\ne w$ and $\dd xw\in\Dist(T)\cup L_x\cup L_w$.
+\end{lemma}
+\begin{proof}
+$L_x\ne\emptyset$, so $x\ne w$. The $n$-set $T\cup\{x,w\}$ is not rainbow. Its distances other than $\dd xw$
+are $\Dist(T)\cup L_x\cup L_w$, and these $\binom n2-1$ numbers are pairwise distinct: $\Dist(T)\cup L_x$ and
+$\Dist(T)\cup L_w$ are rainbow, and $L_x\cap L_w=\emptyset$. Hence $\dd xw$ equals one of them.
+\end{proof}
+
+\begin{theorem}[G1, bipartite form]\label{thm:G1bip}
+Let $P,Q\subseteq Y_T$ be such that every $x\in P$ and $w\in Q$ are label-disjoint. Then
+$\min(|P|,|Q|)\le 2^{L_{k_G}(D+2)}h\le\mu_G$.
+\end{theorem}
+\begin{proof}
+We may assume $P,Q\neq\emptyset$. Then $P\cap Q=\emptyset$, by Lemma~\ref{lem:label}. By Lemma~\ref{lem:label},
+for $x\in P$ and $w\in Q$ the entry $\dd xw^2$ of the matrix $[\dd xw^2]_{x\in P,w\in Q}$ equals one of the following
+$k_G$ types: the constants $d^2$ with $d\in\Dist(T)$; the column functions $w\mapsto\dd wt^2$ with $t\in T$; and the
+row functions $x\mapsto\dd xt^2$ with $t\in T$. The matrix has rank at most $D+2$ (Lemma~\ref{lem:distrank}).
+Theorem~\ref{thm:LR} gives $R\subseteq P$ and $C\subseteq Q$ with $|R|\ge2^{-L}|P|$ and $|C|\ge2^{-L}|Q|$, where
+$L=L_{k_G}(D+2)$, and a single type on $R\times C$. The points of $T$ are not in $Q\subseteq Y_T$, so
+Lemma~\ref{lem:typeOR} applies and gives $\min(|R|,|C|)\le h$. Hence $\min(|P|,|Q|)\le2^Lh$.
+\end{proof}
+
+\begin{corollary}[G1, counting forms]\label{cor:G1}
+Let $\mu\ge\mu_G$.
+\begin{enumerate}[label=(\alph*)]
+\item For every $Y\subseteq Y_T$, the number of ordered pairs $(x,w)\in Y^2$ that are label-disjoint is at most
+  $4^{n-2}\mu|Y|$.
+\item For disjoint $P,Q\subseteq Y_T$, the number of label-disjoint pairs in $P\times Q$ is at most
+  $4^{n-2}\mu(|P|+|Q|)$.
+\item (degree form) For $Y\subseteq Y_T$ and a real $v$ put $\deg_Y(v):=|\{x\in Y:v\in L_x\}|$. If
+  $\deg_Y(v)\le|Y|/(4(n-2))$ for every $v$, then $|Y|\le\frac43(4^{n-2}\mu+1)\le2\cdot4^{n-2}\mu+4$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a) Let $N_{\mathrm{ld}}$ be the number of label-disjoint ordered pairs. Colour every element of
+$\bigcup_{x\in Y}L_x$ red or blue, independently and uniformly. Let $P$ be the set of $x\in Y$ all of whose labels
+are red, and $Q$ the set of $w\in Y$ all of whose labels are blue. Every pair in $P\times Q$ is label-disjoint, so
+by Theorem~\ref{thm:G1bip}, $|P||Q|\le\mu\max(|P|,|Q|)\le\mu|Y|$. A label-disjoint pair $(x,w)$ involves
+$2(n-2)$ distinct labels, so it lies in $P\times Q$ with probability $4^{-(n-2)}$. Taking expectations,
+$4^{-(n-2)}N_{\mathrm{ld}}\le\mathbb E|P||Q|\le\mu|Y|$.
+(b) Apply (a) to $Y=P\cup Q$.
+(c) The ordered pairs $(x,w)$ with $x\ne w$ that share a label number at most
+$\sum_v\deg_Y(v)^2\le\max_v\deg_Y(v)\cdot\sum_v\deg_Y(v)\le\frac{|Y|}{4(n-2)}(n-2)|Y|=|Y|^2/4$. So
+$N_{\mathrm{ld}}\ge|Y|(|Y|-1)-|Y|^2/4$, and (a) gives $\frac34|Y|^2-|Y|\le4^{n-2}\mu|Y|$.
+\end{proof}
+
+In the sequel G1 is applied with $\mu:=2^{\Lst}(h+1)$, where $\Lst=L_{\kst}(D+2)$ and $\kst\ge k_G$
+(Section~\ref{sec:main}). Then $\mu\ge\mu_G$, since $L_k$ is increasing in $k$.

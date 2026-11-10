@@ -1,0 +1,136 @@
+% ====================================================================
+\section{The Slicing Lemma and the class-count theorem E1$_r$}\label{sec:slicing}
+% ====================================================================
+
+The setting is that of Section~\ref{sec:core}: $n\ge5$, $0\le r\le n-5$, $(S,W,\sigma)$ is a level-$r$ configuration with
+$\sigma\ge\smin$, and HR$_r$ holds for it with constant $\Gamma'\ge1$.
+
+\subsection{The Slicing Lemma}
+
+\begin{lemma}[Slicing Lemma]\label{lem:slicing}
+Let $0\le r\le n-6$, let $K\ge1$, and let $\mathcal F=(B,(C_k,\beta(k))_{k\in I})$ be a rainbow family at level $r$
+with $1\le p=|B|\le n-5-r$ and $|I|\ge6K$. Put
+\[
+k_{\mathrm{sl}}:=3K-1+\tbinom{r+p}2+2p+2r,\qquad\theta_{\mathrm{sl}}:=\frac1{16\,\Gamma'(D+2)^{k_{\mathrm{sl}}}},\qquad
+M_{\mathrm{sl}}:=\frac{2n(n+K)\sigma}{\theta_{\mathrm{sl}}},
+\]
+and assume $k_{\mathrm{sl}}\le\kst$. If $M(\mathcal F)\ge M_{\mathrm{sl}}$, then there are a point $c\in\bigcup_kC_k$ and a rainbow family
+$\mathcal F'=(B\cup\{c\},(C'_k,\beta'(k))_{k\in I'})$ at level $r$ with $I'\subseteq I$, $|I'|=K$, $C'_k\subseteq C_k$ and
+$M(\mathcal F')\ge\theta_{\mathrm{sl}}M(\mathcal F)/2$.
+\end{lemma}
+
+\begin{proof}
+Discard indices so that $|I|=6K$, and put $M:=M(\mathcal F)$. Fix $\pi\in I$. For $c\in C_\pi$ the set $S\cup B\cup\{c\}$ is
+rainbow by (F4), and since $\dd c{b_i}=\beta_i(\pi)$,
+\[
+\Phi(c):=\Dist(S\cup B\cup\{c\})=\Dist(S\cup B)\cup\beta(\pi)\cup\{\dd cs:s\in S\},\qquad|\Phi(c)|\le\tbinom{r+p}2+p+r .
+\]
+Note that $R_c=\Dist(S)\cup\{\dd cs\}\subseteq\Phi(c)$. Let $G_c$ be the bipartite graph with left vertex set $I\setminus\{\pi\}$ and
+right vertex set $\R_{>0}$, in which $k\sim\lambda$ if $\lambda\notin\Phi(c)\cup\beta(k)$ and
+$|C_k\cap\Sph(c,\lambda)|\ge\theta_{\mathrm{sl}}|C_k|$. Each $k$ has at most $1/\theta_{\mathrm{sl}}$ neighbours, so only finitely many
+right vertices are non-isolated, and we regard $G_c$ as a finite graph.
+
+\emph{(a) Few bad centres.} Let $Z_{\mathrm{bad}}$ be the set of $c\in C_\pi$ for which $G_c$ has no matching of size $3K$.
+We show $|Z_{\mathrm{bad}}|\le2e$. For $c\in Z_{\mathrm{bad}}$, Theorem~\ref{thm:Konig} gives a vertex cover
+$\mathcal A(c)\cup\Lambda_0(c)$, with $\mathcal A(c)\subseteq I\setminus\{\pi\}$, $\Lambda_0(c)\subseteq\R_{>0}$ and
+$|\mathcal A(c)|+|\Lambda_0(c)|\le3K-1$. Call $c$ \emph{$k$-few} for every $k\in I\setminus(\{\pi\}\cup\mathcal A(c))$; then every
+edge at $k$ ends in $\Lambda_0(c)$.
+
+Let $c$ be $k$-few, and let $x\in C_k$ satisfy $x\notin\bigcup_s\Bis(c,s)$ and
+$\lambda:=\dd xc\notin\Lambda_0(c)\cup\Phi(c)\cup\beta(k)$. Then $(k,\lambda)$ is not an edge, since $\lambda\notin\Lambda_0(c)$.
+As $\lambda\notin\Phi(c)\cup\beta(k)$, this means $|C_k\cap\Sph(c,\lambda)|<\theta_{\mathrm{sl}}|C_k|$. Also $\lambda\notin R_c$. Now apply
+HR$_r$ with $c\in W$, $V:=C_k\subseteq W\setminus\{c\}$ and threshold $\theta:=\theta_{\mathrm{sl}}|C_k|$; this is admissible since
+$\theta\ge\theta_{\mathrm{sl}}M_{\mathrm{sl}}=2n(n+K)\sigma\ge\sigma$. So the number of such $x$ is at most
+$\Gamma'\theta_{\mathrm{sl}}|C_k|=|C_k|/(16(D+2)^{k_{\mathrm{sl}}})$. Hence the matrix
+\[
+\mathcal B_k[x,c]:=\prod_{v\in\Lambda_0(c)\cup\Phi(c)\cup\beta(k)}\bigl(\dd xc^2-v^2\bigr)\prod_{s\in S}\bigl(\dd xc^2-\dd xs^2\bigr)
+\]
+(with $\Lambda_0(c)$ padded to $3K-1$ entries, so that there are at most $k_{\mathrm{sl}}$ factors, and
+$\rk\mathcal B_k\le(D+2)^{k_{\mathrm{sl}}}$) has at most $|C_k|/(16(D+2)^{k_{\mathrm{sl}}})$ nonzero entries in every column $c$ that is
+$k$-few.
+
+Each $c\in Z_{\mathrm{bad}}$ is $k$-few for at least $(6K-1)-(3K-1)=3K$ indices $k$. So some $k$ has
+$Z_k:=\{c\in Z_{\mathrm{bad}}:c\text{ is $k$-few}\}$ with $|Z_k|\ge3K|Z_{\mathrm{bad}}|/(6K-1)\ge|Z_{\mathrm{bad}}|/2$. Take rows $C_k$ and
+columns $Z_k\subseteq C_\pi$ (disjoint). Lemma~\ref{lem:GL} gives a zero rectangle $C_k''\times Z_k''$ of $\mathcal B_k$ with halves.
+There $[\dd xc^2]$ is covered by at most $k_{\mathrm{sl}}\le\kst$ types: column functions (the entries of $\Lambda_0(c)$, and
+$\dd cs^2$), constants (the elements of $\Dist(S\cup B)$, $\beta(\pi)$ and $\beta(k)$), and row functions $\dd xs^2$.
+Theorem~\ref{thm:LR} and Lemma~\ref{lem:typeOR} give a single-type rectangle $R\times C$ with $\min(|R|,|C|)\le h$ and
+$|R|\ge2^{-\Lst}|C_k|/2>h$ (as $|C_k|\ge M\ge\sigma$). So $|C|\le h$, hence $|Z_k''|\le2^{\Lst}h$, $|Z_k|\le e$ and
+$|Z_{\mathrm{bad}}|\le2e$.
+
+\emph{(b) Choice of $c$.} Since $|C_\pi|\ge M\ge M_{\mathrm{sl}}>2\sigma\ge2e$, there is $c\in C_\pi\setminus Z_{\mathrm{bad}}$. Fix such a $c$
+and a matching $\{(k,\lambda_k):k\in I_1\}$ of $G_c$ with $|I_1|=3K$; the $\lambda_k$ are distinct.
+
+\emph{(c) Label conflicts.} Consider the digraph on $I_1$ with an arc $k\to k'$ whenever $k'\ne k$ and $\lambda_k\in\beta(k')$.
+By (F3) each $\lambda_k$ equals at most one of the pairwise distinct numbers $\beta_i(k')$, so every out-degree is at most
+$1$. The underlying graph therefore has at most $3K$ edges, hence average degree at most $2$, and
+Theorem~\ref{thm:CW} gives an independent set of size at least $3K/3=K$. Let $I'$ consist of $K$ of its elements. For
+distinct $k,k'\in I'$ we then have $\lambda_k\notin\beta(k')$.
+
+\emph{(d) The new family.} Put $B':=B\cup\{c\}$, $\beta'(k):=(\beta(k),\lambda_k)$ and
+\[
+C'_k:=\bigl(C_k\cap\Sph(c,\lambda_k)\bigr)\setminus\bigcup_{s\in S}\Sph\bigl(s,\{\dd c{s'}:s'\in S\}\cup\{\lambda_{k'}:k'\in I'\}\bigr)\qquad(k\in I').
+\]
+Then $|C'_k|\ge\theta_{\mathrm{sl}}|C_k|-r(r+K)\sigma\ge\theta_{\mathrm{sl}}M-n(n+K)\sigma\ge\theta_{\mathrm{sl}}M/2$, because
+$\theta_{\mathrm{sl}}M\ge\theta_{\mathrm{sl}}M_{\mathrm{sl}}=2n(n+K)\sigma$. We verify (F1)--(F5) for $\mathcal F'$.
+\begin{itemize}[leftmargin=1.5em]
+\item[(F1)] $c\notin S\cup B$, and $S\cup B\cup\{c\}$ is rainbow, by (F4) for $c\in C_\pi$.
+\item[(F2)] $\dd x{b_i}=\beta_i(k)$ and $\dd xc=\lambda_k$ on $C'_k$.
+\item[(F3)] The old values are pairwise distinct (F3), and the $\lambda_k$ are pairwise distinct (matching). For $k\in I'$,
+  $\lambda_k\notin\beta(k)$ (edge rule) and $\lambda_k\notin\beta(k')$ for $k'\in I'\setminus\{k\}$ (independence). None of the
+  values lies in $\Dist(S\cup B\cup\{c\})=\Phi(c)$: $\lambda_k\notin\Phi(c)$ by the edge rule; $\beta_i(k)\notin\Dist(S\cup B)$ by
+  (F3); $\beta_i(k)\ne\beta_{i'}(\pi)$ by (F3), as $k\ne\pi$; and $\beta_i(k)\ne\dd cs$ by (F5) for $c$.
+\item[(F4)] Let $x\in C'_k$. Then $x\notin S\cup B\cup\{c\}$, because $x\in C_k$, which is disjoint from $C_\pi\ni c$. The distances of
+  $S\cup B\cup\{c,x\}$ are those of $S\cup B\cup\{x\}$ (rainbow), those of $S\cup B\cup\{c\}$ (rainbow), and $\dd xc=\lambda_k$.
+  The cross coincidences are excluded as follows. $\dd xs=\dd c{s'}$ is excluded by the removal in the definition of
+  $C'_k$. $\dd xs\in\beta(\pi)$ is excluded by (F5). $\beta_i(k)=\dd cs$ is excluded by (F5) for $c$. $\beta_i(k)=\beta_{i'}(\pi)$
+  is excluded by (F3). $\lambda_k\in\Phi(c)$ and $\lambda_k\in\beta(k)$ are excluded by the edge rule. Finally $\lambda_k=\dd xs$
+  is excluded by the removal.
+\item[(F5)] For $x\in C'_k$ and $s\in S$: $\dd xs\notin\beta(I')$ by (F5) for $\mathcal F$, and $\dd xs\ne\lambda_{k'}$ by the
+  removal.
+\end{itemize}
+So $\mathcal F'$ is a rainbow family with $p+1$ centres, $|I'|=K$ and $M(\mathcal F')\ge\theta_{\mathrm{sl}}M/2$.
+\end{proof}
+
+\subsection{The class-count theorem}
+
+\begin{theorem}[E1$_r$]\label{thm:E1}
+Let $0\le r\le n-5$, and write $K^{(p)}:=K^{(r,p)}$ for $1\le p\le n-4-r$ (Definition~\ref{def:typecounts}), so that
+$K^{(1)}=K_r$ and $K^{(n-4-r)}=12$. For $1\le p\le n-5-r$ let $k_{\mathrm{sl}}(p):=k_{\mathrm{sl}}(r,p)$,
+$\theta_{\mathrm{sl}}(p):=1/(16\Gamma'(D+2)^{k_{\mathrm{sl}}(p)})$ and $\hat M_{\mathrm{sl}}(p):=2n(n+K^{(p+1)})/\theta_{\mathrm{sl}}(p)$. Define
+$\hat m_{n-4-r}:=\hat M_{\mathrm{core}}$ (Section~\ref{sec:core}) and, for $p=n-5-r,\dots,1$,
+\[
+\hat m_p:=\max\bigl(\hat M_{\mathrm{sl}}(p),\,2\hat m_{p+1}/\theta_{\mathrm{sl}}(p)\bigr),\qquad\text{and}\qquad
+{\mathrm{ratio}}_r:=2\hat m_1+2n(n+K_r).
+\]
+These numbers depend only on $n$, $D$ and $\Gamma'$. If HR$_r$ holds with constant $\Gamma'$, then
+$|\Bg_b({\mathrm{ratio}}_r\,\sigma)|<K_r$ for every $b\in W$.
+\end{theorem}
+
+\begin{proof}
+Put $\tau:={\mathrm{ratio}}_r\,\sigma$, and suppose some $b\in W$ has $K_r$ radii $\rho_k$ ($k\in I$, $|I|=K_r$) in $\Bg_b(\tau)$.
+Define $B:=\{b\}$, $\beta(k):=(\rho_k)$ and
+\[
+C_k:=\bigl(W\cap\Sph(b,\rho_k)\bigr)\setminus\bigcup_{s\in S}\Sph\bigl(s,\{\dd b{s'}:s'\in S\}\cup\{\rho_{k'}:k'\in I\}\bigr).
+\]
+Then $|C_k|\ge\tau-r(r+K_r)\sigma\ge\tau/2\ge\hat m_1\sigma$, because $\tau\ge2n(n+K_r)\sigma$. We check that this is a rainbow family.
+(F1): $b\in W\subseteq X\setminus S$ and $S\cup\{b\}$ is rainbow. (F2) is clear. (F3): the $\rho_k$ are distinct and do not lie in
+$R_b=\Dist(S\cup\{b\})$, by the definition of $\Bg_b$. (F4): for $x\in C_k$, $x\notin S\cup\{b\}$ and $S\cup\{x\}$ is rainbow (as
+$x\in W$). Moreover $\dd xb=\rho_k\notin R_b$; $\dd xs\ne\dd b{s'}$ and $\dd xs\ne\rho_k=\dd xb$ by the removal; so
+$S\cup\{b,x\}$ is rainbow by Lemma~\ref{lem:ext}. (F5) holds by the removal.
+
+If $r=n-5$ then $p=1=n-4-r$, $K_r=12$ and $\hat m_1=\hat M_{\mathrm{core}}$, which contradicts Theorem~\ref{thm:core}. Otherwise, for
+$p=1,\dots,n-5-r$ in turn, we have a family with $p$ centres, $K^{(p)}=6K^{(p+1)}$ classes and $M\ge\hat m_p\sigma\ge\hat M_{\mathrm{sl}}(p)\sigma$.
+Lemma~\ref{lem:slicing}, with $K:=K^{(p+1)}$ and $k_{\mathrm{sl}}=k_{\mathrm{sl}}(r,p)\le\kst$, gives a family with $p+1$ centres,
+$K^{(p+1)}$ classes and $M\ge\theta_{\mathrm{sl}}(p)\hat m_p\sigma/2\ge\hat m_{p+1}\sigma$. At $p=n-4-r$ we obtain $12$ classes and
+$M\ge\hat M_{\mathrm{core}}\sigma=M_{\mathrm{core}}$, which contradicts Theorem~\ref{thm:core}.
+\end{proof}
+
+\begin{remark}[exceptional choices in a slicing round]
+For the reader's orientation, these are the five ways in which a slicing round can go wrong, and how each is
+handled. (i) $c\in Z_{\mathrm{bad}}$: at most $2e$ points, which are avoided. (ii) Small classes of points of $S$ through $c$
+or with radius $\lambda_{k'}$: removed, at a cost of at most $r(r+K)\sigma$ points per class. (iii) Label conflicts
+$\lambda_k\in\beta(k')$: handled by the independent set, at a loss of a factor $3$. (iv) Radii in $\Phi(c)\cup\beta(k)$:
+these are never edges, and they enter the cover as constants or column functions. (v) Bisectors $\Bis(c,s)$: these
+are row types. Only the covering form of the cleaning lemma is used, never a density-to-structure statement.
+\end{remark}

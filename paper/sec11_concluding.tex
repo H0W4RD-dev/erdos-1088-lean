@@ -1,0 +1,80 @@
+% ====================================================================
+\section{Concluding remarks}\label{sec:concl}
+% ====================================================================
+
+\subsection{What the argument rests on}
+Apart from classical results (John, Sheppard, Caro--Wei, K\"onig, Blokhuis), every step is proved in this manuscript. The
+load-bearing new ingredient is Theorem~\ref{thm:LR}. The geometric induction (Sections~\ref{sec:framework}--\ref{sec:main}) uses
+it only as a black box, and all other inputs are elementary. In decreasing order of what we regard as the risk of an error,
+the parts that most deserve an expert's attention are the following.
+\begin{enumerate}[leftmargin=2em]
+\item \emph{Theorem~LR}, in particular the normal form (Lemma~\ref{lem:NF}) and the rescaling at the largest gap by a row
+  function, a column function or a constant. Its constants-only and column-only special cases are close to known
+  arguments~\cite{Lovett,Rothvoss}. The mixed row/column case rests on Lemmas~\ref{lem:A}, \ref{lem:B} and~\ref{lem:NF}.
+\item \emph{Step~A} of Theorem~\ref{thm:Rplus} (Lemma~\ref{lem:stepA}). This is the only place where a density statement (the
+  cross-pair count~\eqref{eq:S2}) is converted into a covering statement, at the cost of a fourth root
+  (Lemma~\ref{lem:twodist}). An earlier version contained a genuine threshold gap here (fix~F1).
+\item The bookkeeping of the Core and Slicing Lemmas, in particular the completeness of the coincidence lists in
+  Lemmas~\ref{lem:step0}, \ref{lem:step1} and~\ref{lem:51}, and the verification of (F1)--(F5) in Lemma~\ref{lem:slicing}(d).
+\end{enumerate}
+If Theorem~\ref{thm:LR} failed, the argument would give only the classical bound $2^{O(d)}$.
+
+\subsection{Computational sanity checks}
+Several finite, threshold-free parts of the argument were tested by computer, in the project and by the referees.
+We list these tests for completeness. They are \emph{sanity checks only}. Every threshold in the argument
+($\smin\ge2^{\Lst}(h+1)$, the cleaning densities, the sides required in the orthogonal splits) is astronomically
+larger than any set that can be handled numerically, so no threshold-dependent conclusion was, or could be,
+tested. Only inclusions and implications were tested.
+\begin{itemize}[leftmargin=1.5em]
+\item \emph{Rounding and cleaning} (referee pass on Theorem~LR). John positions were computed numerically (as
+  minimum-volume enclosing ellipsoids) on $k$-listable instances, giving $\max|u_x|/s^{1/4}\le1.0002$ (the solver
+  tolerance) and $\max|v_w|/(Ks^{1/4})\le1$. Sheppard's formula was compared with Monte Carlo estimates and agreed to
+  within $10^{-3}$. The cleaning lemma was tested on adversarial sparse low-rank matrices, and a zero block was always
+  found.
+\item \emph{Normal form} (same referee pass). An independent implementation of Lemmas~A, B, NF and one round of the LR
+  induction was run on $1600$ adversarial block-structured instances: accumulating labels $\kappa\pm2^{-j}$ with $j$ up
+  to $40$, ties between row and column functions on blocks, magnitudes $2^{\pm40}$, and up to $5$ types of mixed kinds.
+  None of (NF1)--(NF3), the bounds on $|N|$, the identification of the minority set with the support of $H$, or the
+  rank bound for $H$ was ever violated.
+\item \emph{Genericity in Step~A} (referee pass on Theorem~R$^+$). In $70{,}213$ random grid configurations
+  ($n=4,5,6$), $20{,}361$ of them non-generic, no non-generic point fell outside the listed loci.
+\item \emph{The case $n=5$} (referee pass on the $n=5$ argument). About $150{,}000$ exact-arithmetic checks of the
+  threshold-free inclusions of Steps~0--3 and~5 were run on rainbow-$5$-free families (Johnson-type schemes, products, and
+  greedy grid sets), with no violation.
+\item \emph{General $n$, author's checks.} $348{,}884$ exact-integer checks for $n=6,7$ and all relevant $(r,p)$ were run,
+  covering the non-generic loci of Step~0, the inclusions of Step~1, the characterisation in Lemma~\ref{lem:51}, the
+  equivalence behind Lemma~\ref{lem:HR}, and the family conditions in Lemma~\ref{lem:slicing}(d). There was no violation.
+  These checks sampled \emph{arbitrary} integer points, not points of rainbow-$n$-free sets (referee item~X6). So they
+  do not test the one implication that uses rainbow-$n$-freeness, namely the label lemma behind G1.
+\item \emph{General $n$, independent checks} (referee pass on the general-$n$ argument). About $340{,}000$ exact checks
+  were run on genuinely rainbow-$n$-free sets for $n=6,7$. The sets were orthogonal unions of integer points on small
+  spheres, arranged so that cross distances collide, together with few-distance lattices. The checks included the
+  full pipeline of Lemmas~\ref{lem:HR} and~\ref{lem:kill}, the initial family of Theorem~\ref{thm:E1}, slicing rounds with
+  actual maximum matchings and K\"onig covers, and Steps~0--2 and~5 of the Core Lemma. They also included the label
+  lemma (Lemma~\ref{lem:label}) on label-disjoint generic pairs. There was no violation. On these sets families die
+  after one or two slicing rounds, and at most $7$ (for $n=6$) or $12$ (for $n=7$) classes were available. So the
+  contradiction in the Core Lemma itself was never exercised; only its steps were.
+\end{itemize}
+
+\subsection{Literature}
+In the referee pass on Theorem~LR, the following works were searched for prior statements of
+Theorem~\ref{thm:LR} or Corollary~\ref{cor:RQlist}:~\cite{HMST}, which proves bounds for nonnegative
+integer matrices with bounded average and remarks that binarity is not crucial; Sudakov--Tomon~\cite{SudakovTomon};
+Rothvoss~\cite{Rothvoss}; Lovett~\cite{Lovett}; and works citing~\cite{SingerSudan}. No statement of a
+$2^{-\tilde O(\sqrt d)}$ bound for $k$-listable real matrices was found. The search was not exhaustive. As stressed in
+Remark~\ref{rem:SS}, the possible improvement over the bound stated in~\cite{SingerSudan} for parallel partitions should
+be confirmed by experts. Corollary~\ref{cor:RQlist} follows from Rothvoss's argument in a few lines, and it may be regarded
+as folklore.
+
+\subsection{Further remarks}
+\begin{itemize}[leftmargin=1.5em]
+\item The class counts $K_r=12\cdot6^{n-5-r}$, the type counts and all constants are far from optimal. For $n=5$ a referee
+  observed that the count in Step~5 already works with $7$ classes instead of $12$, at the cost of larger constants.
+\item The super-polynomial factor $2^{\Lst}$ in the thresholds cannot be removed from the class-count statement E1$_r$
+  alone. If $Y$ is rainbow-$(n-1)$-free and $o$ is any point, then $Y\cup\{o\}$ is rainbow-$n$-free. A referee observed
+  that, for $n=5$, taking $Y$ to be a Johnson-type $5$-distance set and $o$ a suitable weight vector gives a point
+  with many more than $12$ classes, each of size polynomial in $D$. So E1 with a threshold polynomial in $D$ would be
+  false. With the thresholds used here, E1 is consistent with every example known to us.
+\item No super-polynomial lower bound for $f_d(n)$ is known to us, so the gap between $d^{\Omega_n(1)}$ and
+  $2^{O_n(\sqrt d\log d)}$ remains wide.
+\end{itemize}

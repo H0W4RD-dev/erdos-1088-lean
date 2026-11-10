@@ -1,0 +1,224 @@
+% ====================================================================
+\section{Theorem LR: low-rank matrices covered by row and column types}\label{sec:LR}
+% ====================================================================
+
+\subsection{Statement}
+Let $M\in\R^{R_0\times C_0}$ be a matrix with finite row set $R_0$ and column set $C_0$. A \emph{type} is a function
+$\tau$ on $R_0\times C_0$ which is either a \emph{row function}, $\tau(x,w)=a(x)$, or a \emph{column function},
+$\tau(x,w)=b(w)$. A constant function is both. A set $\mathcal T$ of types \emph{covers} $M$ on a rectangle
+$R\times C$ if for every $(x,w)\in R\times C$ there is $\tau\in\mathcal T$ with $M[x,w]=\tau(x,w)$. For $k,r\ge1$ put
+\[
+  L_k(r):=2^{14}\,k^3\sqrt{r+2}\,\log_2(r+2).
+\]
+This is increasing in $k$ and in $r$.
+
+\begin{theorem}[Theorem LR]\label{thm:LR}
+Let $M\in\R^{m\times n}$ have rank at most $r$, where $r\ge1$. Let $\mathcal T$ be a set of at most $k$ types
+covering $M$ on $[m]\times[n]$. Then there are nonempty $R\subseteq[m]$ and $C\subseteq[n]$ and a single
+$\tau^\ast\in\mathcal T$ such that
+\[
+  |R|\ge 2^{-L_k(r)}m,\qquad |C|\ge 2^{-L_k(r)}n,\qquad M[x,w]=\tau^\ast(x,w)\ \text{ for all }(x,w)\in R\times C .
+\]
+\end{theorem}
+
+Since $L_k$ is increasing in $k$, the theorem also holds with any $k'\ge k$ in place of $k$. When it is
+applied to a family of fewer than $k$ types, the family may be padded by repeating a type.
+
+\subsection{Margin rounding}
+
+\begin{lemma}[margin rounding; quantitative form of Rothvoss~{\cite[Sec.~3]{Rothvoss}}]\label{lem:R}
+Let $N\in\R^{m\times n}$ have rank at most $s$, where $s\ge 1$, and suppose $\tfrac12\le|N_{xw}|\le K$ for all entries. Let
+$Q^+:=\{(x,w):N_{xw}>0\}$ and $Q^-:=\{(x,w):N_{xw}<0\}$, and suppose $|Q^+|\ge\delta mn$ with
+$0<\delta\le\frac12$. Put $T:=\lceil\pi K\sqrt s\,\ln(2/\delta^2)\rceil$. Then there are $X'\subseteq[m]$ and
+$Y'\subseteq[n]$ with
+\[
+|X'|\ge\tfrac\delta2 4^{-T}m,\qquad |Y'|\ge\tfrac\delta24^{-T}n,\qquad |(X'\times Y')\cap Q^-|\le\delta|X'||Y'|.
+\]
+\end{lemma}
+\begin{proof}
+Let $s_0:=\rk N$. Then $1\le s_0\le s$, since $N$ has nonzero entries. Write $N_{xw}=\langle u_x,v_w\rangle$ with
+$u_x,v_w\in\R^{s_0}$, where the $u_x$ span $\R^{s_0}$. The body $K_0:=\operatorname{conv}\{\pm u_x\}$ is
+symmetric with nonempty interior. By Theorem~\ref{thm:John} there is an ellipsoid $E$ with
+$E\subseteq K_0\subseteq\sqrt{s_0}E$. Choose a linear map $A$ with $A(E)=s_0^{-1/4}B$, where $B$ is the unit
+ball, and replace $u_x$ by $Au_x$ and $v_w$ by $A^{-T}v_w$. This preserves all inner products, and now
+$s_0^{-1/4}B\subseteq K_0\subseteq s_0^{1/4}B$. Hence $|u_x|\le s_0^{1/4}$. Moreover $v_w\ne0$, because $N_{xw}\ne0$.
+The point $z:=s_0^{-1/4}v_w/|v_w|$ lies in $K_0$, so
+\[
+s_0^{-1/4}|v_w|=\langle z,v_w\rangle\le\max_x|\langle u_x,v_w\rangle|\le K,
+\]
+that is, $|v_w|\le Ks_0^{1/4}$. For the unit vectors $\hat u_x,\hat v_w$ we get
+$|\langle\hat u_x,\hat v_w\rangle|\ge \frac{1/2}{K\sqrt{s_0}}\ge b:=\frac1{2K\sqrt s}$, with the sign of $N_{xw}$.
+
+Let $g_1,\dots,g_T$ be independent standard Gaussian vectors in $\R^{s_0}$. Put
+$X':=\{x:\langle\hat u_x,g_t\rangle\ge0\ \forall t\}$ and $Y':=\{w:\langle\hat v_w,g_t\rangle\ge0\ \forall t\}$, and
+$\mathcal R:=X'\times Y'$. By Theorem~\ref{thm:Sheppard} and independence, $\Pr[(x,w)\in\mathcal R]\ge 4^{-T}$ for
+$(x,w)\in Q^+$, and $\Pr[(x,w)\in\mathcal R]\le4^{-T}(1-2b/\pi)^T\le 4^{-T}e^{-2bT/\pi}$ for $(x,w)\in Q^-$. Since
+$2bT/\pi=T/(\pi K\sqrt s)\ge\ln(2/\delta^2)$, we get
+\[
+\mathbb E|\mathcal R\cap Q^-|\le\tfrac{\delta^2}{2}mn4^{-T}\le\tfrac\delta2\,\mathbb E|\mathcal R\cap Q^+|,
+\qquad \mathbb E|\mathcal R\cap Q^+|\ge\delta mn4^{-T}.
+\]
+Hence $\mathbb E\bigl[|\mathcal R\cap Q^+|-\delta^{-1}|\mathcal R\cap Q^-|\bigr]\ge\frac12\mathbb E|\mathcal R\cap Q^+|
+\ge\frac\delta2mn4^{-T}$. Fix an outcome attaining at least this value. For it,
+$|\mathcal R\cap Q^-|\le\delta|\mathcal R\cap Q^+|\le\delta|\mathcal R|$ and
+$|\mathcal R|\ge\frac\delta2 mn4^{-T}$. Since $|X'|\le m$ and $|Y'|\le n$, both size bounds follow.
+\end{proof}
+
+\subsection{Refinements and the normal form}
+A \emph{refinement of cost $(c_1,c_2)$} of a rectangle $R_0\times C_0$ is a rectangle $R\times C\subseteq R_0\times C_0$
+with $|R|\ge|R_0|/c_1$ and $|C|\ge|C_0|/c_2$. Every property stated ``everywhere on'' a rectangle is inherited by
+its refinements. A \emph{basic quantity} is a positive row function, a positive column function or a positive
+constant. A function $\Delta$ on a rectangle is \emph{$c$-comparable} to a basic quantity $Q$ if
+$Q\le|\Delta|\le cQ$ everywhere on it.
+
+\begin{lemma}[Lemma A]\label{lem:A}
+Let $a$ be a row function and $b$ a column function on $R_0\times C_0$. There is a refinement of cost $(4,2)$ on
+which either (i) $a$ is constant, or (ii) for some $\theta$ we have $a(x)>\theta\ge b(w)$ everywhere, or
+$a(x)<\theta\le b(w)$ everywhere.
+\end{lemma}
+\begin{proof}
+Let $\theta$ be a median of $a$ on $R_0$, so that at least half of the rows have $a\le\theta$ and at least
+half have $a\ge\theta$. If $|\{a=\theta\}|\ge|R_0|/4$, take $\{a=\theta\}\times C_0$; this is case (i).
+Otherwise $\{a>\theta\}$ and $\{a<\theta\}$ each contain at least $|R_0|/4$ rows. One of $\{b\le\theta\}$ and
+$\{b\ge\theta\}$ contains at least $|C_0|/2$ columns. Take $\{a>\theta\}\times\{b\le\theta\}$ or
+$\{a<\theta\}\times\{b\ge\theta\}$ accordingly; this is case (ii).
+\end{proof}
+
+\begin{lemma}[Lemma B]\label{lem:B}
+Let $\Delta>0$ be a row function and $E\ge0$ a column function on $R_0\times C_0$. There is a refinement of cost
+$(4,4)$ on which (a) $\Delta\ge2E$ everywhere, or (b) $E\ge2\Delta$ everywhere, or (c) for some $s>0$ both
+$\Delta$ and $E$ take values in $(s/4,4s)$.
+\end{lemma}
+\begin{proof}
+Let $s$ be a median of $E$ on $C_0$. If $s=0$, then $\{E=0\}$ contains at least half of the columns and
+$\Delta>0=2E$ there: case (a). Let $s>0$. If $|\{\Delta\ge2s\}|\ge|R_0|/4$, take
+$\{\Delta\ge2s\}\times\{E\le s\}$: case (a). Else, if $|\{\Delta\le s/2\}|\ge|R_0|/4$, take
+$\{\Delta\le s/2\}\times\{E\ge s\}$: case (b). Otherwise $R_1:=\{s/2<\Delta<2s\}$ contains more than
+$|R_0|/2$ rows. If $|\{E\le s/4\}|\ge|C_0|/4$, take $R_1\times\{E\le s/4\}$: case (a). Else, if
+$|\{E\ge4s\}|\ge|C_0|/4$, take $R_1\times\{E\ge4s\}$: case (b). Otherwise $\{s/4<E<4s\}$ contains more than
+$|C_0|/2$ columns, and $R_1\times\{s/4<E<4s\}$ gives case (c).
+\end{proof}
+
+\begin{lemma}[normal form, Lemma NF]\label{lem:NF}
+Let a set $\mathcal T$ of $k$ types cover $M$ on $R_0\times C_0$. There is a refinement $R\times C$ of cost at
+most $(2^{2k^2+3},2^{2k^2+3})$, and a subset $\mathcal T'\subseteq\mathcal T$ with $k':=|\mathcal T'|\ge1$
+that still covers $M$ on $R\times C$, such that on $R\times C$:
+\begin{enumerate}[label=(NF\arabic*)]
+\item the types of $\mathcal T'$ are strictly ordered, $\tau_{(1)}(x,w)<\dots<\tau_{(k')}(x,w)$, in the same order at
+  every $(x,w)$;
+\item if $k'\ge2$, every gap $g_j:=\tau_{(j+1)}-\tau_{(j)}$ is $16$-comparable to a basic quantity $Q_j$;
+\item if $k'\ge2$, there is $j^\ast$ with $Q_{j^\ast}\ge Q_j/16$ for all $j$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Process the $\binom k2$ pairs $\{\tau,\tau'\}$ one after the other, refining each time. If one of the two types
+has already been deleted, skip the pair. A constant is treated as a row function when it is paired with a row
+function, and as a column function when it is paired with a column function (editorial item~(i) of the referee report on Theorem~LR).
+\begin{itemize}[leftmargin=1.5em]
+\item \emph{Two row functions} (or a row function and a constant, or two constants). Split the rows into three
+  parts according to the sign of $\tau-\tau'$, and keep a largest part: cost $(3,1)$. If the part with
+  $\tau=\tau'$ is kept, delete $\tau'$; coverage is preserved. Otherwise $|\tau-\tau'|$ is a positive row
+  function, hence $1$-comparable to a basic quantity, and has constant sign. Two column functions are treated
+  symmetrically, at cost $(1,3)$.
+\item \emph{A row function $a$ and a column function $b$} (neither constant). Apply Lemma~\ref{lem:A}, at cost
+  $(4,2)$. In case~(i) $a$ is now constant, and from now on it is treated as a column function. Split the
+  columns by the sign of $a-b$ (cost $(1,3)$), deleting $b$ if the part with $a=b$ is kept. In case~(ii), say
+  $a>\theta\ge b$ (the other case is symmetric), we have $a-b=\Delta+E$ with $\Delta:=a-\theta>0$ a row
+  function and $E:=\theta-b\ge0$ a column function. Lemma~\ref{lem:B}, at cost $(4,4)$, gives one of three
+  cases: (a) $\Delta\le a-b\le\frac32\Delta$; (b) $E\le a-b\le\frac32E$, where $E\ge2\Delta>0$; or
+  (c) $s/2<a-b<8s=16\cdot(s/2)$. In each case $a-b>0$ is $16$-comparable to a basic quantity.
+\end{itemize}
+Each pair costs at most $(16,8)$, so all pairs together cost at most $16^{\binom k2}$ per side. On the
+resulting rectangle, every difference of two surviving types has a constant strict sign and is $16$-comparable to
+a basic quantity. Since the values at a fixed $(x,w)$ are real numbers, these signs define one strict total
+order, and every entry has exactly one type in $\mathcal T'$. This gives (NF1) and~(NF2).
+
+For (NF3), let $J_{\mathrm{row}}$, $J_{\mathrm{col}}$, $J_{\mathrm{const}}$ be the sets of $j$ for which $Q_j$ is a row function,
+a column function or a constant. Split the rows according to which $j\in J_{\mathrm{row}}$ maximises $Q_j(x)$, keeping
+a largest part (cost at most $k$). On the result some $j_r$ satisfies $Q_{j_r}=R^\ast:=\max_{J_{\mathrm{row}}}Q_j$.
+Do the same for the columns, which gives $j_c$ with $Q_{j_c}=C^\ast:=\max_{J_{\mathrm{col}}}Q_j$. Let $j_s$ attain
+$s^\ast:=\max_{J_{\mathrm{const}}}Q_j$. Apply Lemma~\ref{lem:B} to $(R^\ast,C^\ast)$.
+In case (a) ($R^\ast\ge2C^\ast$), split the rows into $\{R^\ast\ge s^\ast\}$ and $\{R^\ast<s^\ast\}$ (cost $2$).
+On the first part $j^\ast=j_r$ works, and on the second $j^\ast=j_s$ works. Case (b) is symmetric, splitting the
+columns. In case (c) ($R^\ast,C^\ast\in(s/4,4s)$): if $s^\ast\ge s$, then $j^\ast=j_s$ works with factor~$4$;
+if $s^\ast<s$, then $R^\ast>s/4>s^\ast/4$ and $C^\ast<4s<16R^\ast$, so $j^\ast=j_r$ works with factor~$16$.
+If some $J_\bullet$ is empty, the corresponding comparison is simply omitted. The cost of this step is at most
+$(8k,8k)$. The total cost is at most $16^{\binom k2}\cdot 8k\le2^{2k^2+3}$ per side.
+\end{proof}
+
+\subsection{Proof of Theorem LR}
+We use induction on $k$. For $k=1$ take $R=[m]$ and $C=[n]$. Let $k\ge2$, and apply Lemma~\ref{lem:NF} to
+$[m]\times[n]$, obtaining $R_0\times C_0$ and $\mathcal T'$. If $k'=1$ we are done. Otherwise, by (NF2) and
+(NF3), $g_{j^\ast}\ge Q_{j^\ast}$ and $g_j\le16Q_j\le256Q_{j^\ast}$ for every $j$. So the spread
+$\mathcal S:=\tau_{(k')}-\tau_{(1)}=\sum_jg_j$ satisfies $\mathcal S\le256(k'-1)Q_{j^\ast}$. Put
+\[
+z:=\tfrac12\bigl(\tau_{(j^\ast)}+\tau_{(j^\ast+1)}\bigr),\qquad \sigma:=Q_{j^\ast},\qquad N:=(M-z)/\sigma
+\quad\text{(entrywise, on $R_0\times C_0$)}.
+\]
+Each $\tau$ is a row or a column function, so $z=\varphi(x)+\vartheta(w)$ for functions $\varphi,\vartheta$.
+Since $\sigma$ is a basic quantity, $1/\sigma=\alpha(x)\beta(w)$ with $\alpha,\beta>0$ (one of them $\equiv1$).
+Hence $N=\mathrm{diag}(\alpha)\,(M-\varphi\mathbf 1^T-\mathbf 1\vartheta^T)\,\mathrm{diag}(\beta)$ has rank at
+most $r+2$. By (NF1) each entry has a unique type $\tau_{(i)}$. If $i\le j^\ast$, then
+$-256(k'-1)\le-\mathcal S/\sigma\le N\le-g_{j^\ast}/(2\sigma)\le-\frac12$. If $i>j^\ast$, then
+$\frac12\le N\le256(k'-1)$. So $\frac12\le|N|\le K:=256(k-1)$, and the sign of $N$ records on which side of the
+gap $j^\ast$ the type of the entry lies.
+
+Replacing $N$ by $-N$ if necessary, we may assume that $Q^+=\{N>0\}$ contains at least half of the entries of
+$R_0\times C_0$. Let $\mathcal T_{\mathrm{maj}}$ be the types on the positive side and $\mathcal T_{\mathrm{min}}$ those on the
+negative side. Both are nonempty, because $1\le j^\ast<k'$, so $|\mathcal T_{\mathrm{maj}}|\le k'-1\le k-1$. If
+$Q^-=\emptyset$, every entry of $R_0\times C_0$ has a type in $\mathcal T_{\mathrm{maj}}$, and we apply the induction
+hypothesis to $\mathcal T_{\mathrm{maj}}$ on $R_0\times C_0$ directly. Otherwise put $\delta:=1/(16(r+1)^{k-1})$ and
+apply Lemma~\ref{lem:R} (with $s=r+2$). This gives $X'\times Y'\subseteq R_0\times C_0$ with
+$|X'|\ge\frac\delta24^{-T}|R_0|$ and $|Y'|\ge\frac\delta24^{-T}|C_0|$, containing at most $\delta|X'||Y'|$ entries of
+$Q^-$, where $T=\lceil\pi K\sqrt{r+2}\ln(2/\delta^2)\rceil$.
+
+The entries of $Q^-$ are \emph{exactly} the support of
+\[
+  H:=\mathop{\bigcirc}_{\tau\in\mathcal T_{\mathrm{maj}}}(M-\tau).
+\]
+Indeed, an entry whose type lies in $\mathcal T_{\mathrm{maj}}$ makes one factor vanish. By (NF1), an entry whose
+type lies in $\mathcal T_{\mathrm{min}}$ differs from every majority-type value at that position. Each matrix
+$M-\tau$ has the form $M-a\mathbf 1^T$ or $M-\mathbf 1b^T$, of rank at most $r+1$. By Lemma~\ref{lem:HP},
+$\rk H\le(r+1)^{k-1}$. So $H$ restricted to $X'\times Y'$ has at most $|X'||Y'|/(16(r+1)^{k-1})$ nonzero entries,
+and Lemma~\ref{lem:GL} gives $X''\times Y''$ with $|X''|\ge|X'|/2$, $|Y''|\ge|Y'|/2$ and $H=0$ there. Every entry
+of $X''\times Y''$ therefore has its type in $\mathcal T_{\mathrm{maj}}$. The submatrix has rank at most $r$, and we
+apply the induction hypothesis to it with the at most $k-1$ types $\mathcal T_{\mathrm{maj}}$.
+
+\emph{Loss.} We bound the loss of one round, measured in bits per side, i.e.\ $\log_2$ of the ratio of side
+lengths. Lemma~\ref{lem:NF} costs at most $2k^2+3$, Lemma~\ref{lem:GL} costs $1$, and Lemma~\ref{lem:R} costs
+$\log_2(2/\delta)+2T$. Here $\log_2(2/\delta)=5+(k-1)\log_2(r+1)$. Since $r\ge1$ we have $\ln(r+2)\ge1$, so
+$\ln(2/\delta^2)=\ln 512+2(k-1)\ln(r+1)\le 6k\ln(r+2)$. Hence
+$T\le1+256\pi(k-1)\sqrt{r+2}\cdot 6k\ln(r+2)\le 1+3345\,k^2\sqrt{r+2}\log_2(r+2)$. Using
+$\sqrt{r+2}\log_2(r+2)\ge1$, one round costs at most
+\[
+2k^2+11+k\log_2(r+2)+6690\,k^2\sqrt{r+2}\log_2(r+2)\le 2^{13}k^2\sqrt{r+2}\log_2(r+2)
+\]
+bits per side. The number of types drops by at least one per round, so the total loss is at most
+$\sum_{j=2}^k2^{13}j^2\sqrt{r+2}\log_2(r+2)\le L_k(r)$. \qed
+
+\subsection{The column-type special case}
+
+\begin{corollary}[RQ-list]\label{cor:RQlist}
+Let $M\in\R^{m\times n}$ have rank at most $r$, where $r\ge 1$, and suppose every column of $M$ takes at most
+$k$ distinct values. Then there are $R\subseteq[m]$ and $C\subseteq[n]$ with $|R|\ge2^{-L_k(r)}m$ and
+$|C|\ge2^{-L_k(r)}n$ such that every column of $M$ is constant on $R\times C$.
+\end{corollary}
+\begin{proof}
+List the values of column $w$ as $v_1(w)<\dots<v_{k_w}(w)$, and pad the list to length $k$ by repeating
+$v_{k_w}(w)$. The $k$ column functions $v_i$ cover $M$. Theorem~\ref{thm:LR} gives a rectangle on which
+$M[x,w]=v_i(w)$ for a single $i$.
+\end{proof}
+See Remark~\ref{rem:SS} for the relation of Corollary~\ref{cor:RQlist} to~\cite{SingerSudan}. In the geometric
+applications, Theorem~\ref{thm:LR} is always used together with the following observation.
+
+\begin{lemma}[types give orthogonal splits]\label{lem:typeOR}
+Let $X\subset\R^D$ be rainbow-$n$-free, and let $R,C\subseteq X$ be disjoint and nonempty. Suppose that on
+$R\times C$ the matrix $[\dd xa^2]_{x\in R,a\in C}$ equals a single type $\tau$ of one of the following forms:
+a constant $v^2$; a column function $v(a)^2$; or a row function $\dd xs^2$ with $s\in X\setminus C$ fixed. Then
+$\min(|R|,|C|)\le h$.
+\end{lemma}
+\begin{proof}
+In the first two cases every $a\in C$ is equidistant from $R$, so Lemma~\ref{lem:OR}(a) applies. In the third,
+$\dd xa=\dd xs$ means $x\in\Bis(s,a)$ for all $x\in R$ and $a\in C$, so Lemma~\ref{lem:OR}(b) applies with
+$p=s$.
+\end{proof}

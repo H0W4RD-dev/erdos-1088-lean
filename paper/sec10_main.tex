@@ -1,0 +1,106 @@
+% ====================================================================
+\section{The threshold tower and the proof of the Main Theorem}\label{sec:main}
+% ====================================================================
+
+\subsection{The tower}
+Let $n\ge4$ and $D\ge1$. The constants are defined in the following order.
+\begin{enumerate}[label=(\arabic*),leftmargin=2em]
+\item The type counts and class counts of Definition~\ref{def:typecounts}; these depend only on $n$.
+\item The absolute parameters $\Lst,\mu,e,e_A,\smin$ of Definition~\ref{def:absolute}; these depend only on $n$, $D$ and
+  $h=s_n(\lfloor D/2\rfloor)$.
+\item $Q$ and $\Gamma_{n-2},\Gamma_{n-3},\Gamma_{n-4}$, by Theorem~\ref{thm:Rplus} and~\eqref{eq:Gamma-top}; these depend only on $n$
+  and $D$.
+\item For $n\ge5$ and $r=n-5,n-6,\dots,0$, in this order:
+  \begin{equation}\label{eq:Gamma-low}
+  \Gamma'_r:=\Gamma_{r+1}+r^2,\qquad{\mathrm{ratio}}_r:=\text{the number of Theorem~\ref{thm:E1} with }\Gamma'=\Gamma'_r,\qquad
+  \Gamma_r:=P(K_r-1,r)\bigl(2\,{\mathrm{ratio}}_r\,\Gamma_{r+1}+2r^2+1\bigr),
+  \end{equation}
+  with $P(K,r)$ as in Lemma~\ref{lem:kill}. Here ${\mathrm{ratio}}_r$ depends only on $n$, $D$ and $\Gamma'_r$, and $\Gamma_r$ only on $n$,
+  $D$ and $\Gamma_{r+1}$.
+\end{enumerate}
+No step refers to a later one. In particular $\smin$ involves no $\Gamma$, and no $\Gamma$ involves $\smin$ or $h$
+(referee item~X5). The quantities $Q$ and $L_{k'}(D+2)\le\Lst$ enter only through $\Gamma_{n-3}$, $\Gamma_{n-4}$ and $\smin$
+respectively.
+
+\begin{theorem}\label{thm:allclaims}
+For every $0\le j\le n-2$, Claim$(j)$ holds with the constant $\Gamma_j$ defined above.
+\end{theorem}
+\begin{proof}
+For $j\ge n-4$ this is Theorem~\ref{thm:Rplus}. Let $n\ge5$ and $0\le r\le n-5$, and assume Claim$(r+1)$ with constant
+$\Gamma_{r+1}$. Let $(S,W,\sigma)$ be a level-$r$ configuration with $\sigma\ge\smin$. By Lemma~\ref{lem:HR}, HR$_r$ holds for
+$(S,W,\sigma)$ with constant $\Gamma'_r$. By Theorem~\ref{thm:E1}, $|\Bg_b({\mathrm{ratio}}_r\sigma)|\le K_r-1$ for every
+$b\in W$. Lemma~\ref{lem:kill}, with $K=K_r-1$ and $\tau={\mathrm{ratio}}_r\sigma\ge\sigma$, together with $1\le\sigma$
+(Remark~\ref{rem:killconst}), gives $|W|\le P(K_r-1,r)(2{\mathrm{ratio}}_r\Gamma_{r+1}+2r^2+1)\sigma=\Gamma_r\sigma$. Downward
+induction on $r$ completes the proof.
+\end{proof}
+
+The induction is legitimate because each Claim$(j)$ is a statement about all configurations and all caps
+$\sigma\ge\smin$, with a constant independent of $\sigma$. The proofs apply Claim$(j+1)$ with caps
+$\theta\ge\sigma$ (Lemma~\ref{lem:HR}, and through it Lemma~\ref{lem:step3} and Lemma~\ref{lem:slicing}(a)), $Q\sigma$
+(Theorem~\ref{thm:Rplus}) and ${\mathrm{ratio}}_r\sigma$ (Lemma~\ref{lem:kill}). Each of these caps is at least $\smin$.
+
+\subsection{Size of the constants}
+
+\begin{lemma}[growth]\label{lem:growth}
+Put $a:=D+2$. There is $c_n$, depending only on $n$, with $\Gamma_0\le a^{c_n}$ for all $D\ge1$. More precisely,
+$g_r:=\log_a\Gamma_r$ satisfies $g_r\le(n-2-r)\,g_{r+1}+b_n$ for $0\le r\le n-5$, where $b_n$ depends only on $n$. Hence
+$g_0\le\frac{(n-2)!}2\,(g_{n-4}+b_n)$, and $g_{n-4}=O(n^2)$.
+\end{lemma}
+\begin{proof}
+Call a quantity \emph{$n$-polynomial} if it is at most $a^c$ with $c$ depending only on $n$. Since $a\ge3$, every number
+depending only on $n$ is $n$-polynomial, and sums, products and maxima of boundedly many (in terms of $n$)
+$n$-polynomial quantities are $n$-polynomial. $Q$ is $n$-polynomial, and so are $P^+_j\le a^{2e_j}$ and
+$P(K,r)\le a^{2e_{K,r}}$ (Lemma~\ref{lem:DIM}). Hence $\Gamma_{n-2},\Gamma_{n-3},\Gamma_{n-4}$ are $n$-polynomial. Since $e_j=O(n^2)$, $k'=O(n^2)$ and
+$\log_a(2^{44}n^4)=O(\log n)$, two applications of~\eqref{eq:Gamma-top} give $g_{n-4}=O(n^2)$.
+
+For the recursion, fix $r\le n-5$ and write $\Gamma'=\Gamma'_r$. First, $\Gamma_{r+1}\ge r^2$: this is clear from~\eqref{eq:Gamma-top}
+and~\eqref{eq:Gamma-low}. Hence $\Gamma'\le2\Gamma_{r+1}$. Next, $2/\theta_{\mathrm{sl}}(p)=32\Gamma'a^{k_{\mathrm{sl}}(p)}$ and
+$\hat M_{\mathrm{sl}}(p)=32\Gamma'a^{k_{\mathrm{sl}}(p)}n(n+K^{(p+1)})$. Using $\max(x,y)\le xy$ for $x,y\ge1$, we get
+$\hat m_p\le32\Gamma'a^{k_{\mathrm{sl}}(p)}n(n+K^{(p+1)})\,\hat m_{p+1}$, and hence
+\[
+\hat m_1\le\Bigl[\prod_{p=1}^{n-5-r}32\Gamma'a^{k_{\mathrm{sl}}(p)}n(n+K^{(p+1)})\Bigr]\,2^{20}4^nn^2\Gamma'^2a^{2k_c(r)}
+\le A_n\,a^{B_n}\,\Gamma'^{\,n-3-r},
+\]
+with $A_n,B_n$ depending only on $n$. Also $\hat m_1\ge2n(n+K_r)$, so ${\mathrm{ratio}}_r\le3\hat m_1$. Finally
+$2r^2+1\le{\mathrm{ratio}}_r\Gamma_{r+1}$, so~\eqref{eq:Gamma-low} gives
+$\Gamma_r\le3P(K_r-1,r)\,{\mathrm{ratio}}_r\,\Gamma_{r+1}\le9a^{2e_{K_r-1,r}}A_na^{B_n}2^{n}\Gamma_{r+1}^{\,n-2-r}$. Taking $\log_a$
+proves the recursion, and iterating it from $r=n-5$ down to $r=0$ gives the bound on $g_0$, since
+$\prod_{r=0}^{n-5}(n-2-r)=(n-2)!/2$.
+\end{proof}
+
+By Definition~\ref{def:typecounts}, $\kst\le6^{n-4}+2n^2$. So $\Lst=L_{\kst}(D+2)=O(6^{3n}\sqrt D\log D)$ and
+\[
+\smin=2^{\Lst+2+2n}(h+1)=2^{O(6^{3n}\sqrt D\log D)}\,(h+1).
+\]
+We have made no attempt to optimise the constants: the exponent $c_n$ grows like $(n-2)!$ and the constant in
+$\Lst$ like $6^{3n}$. Only the shape $2^{O_n(\sqrt d\log d)}$ is claimed.
+
+\subsection{Proof of the Main Theorem}
+
+\begin{theorem}[Main Theorem]\label{thm:main}
+For every $n\ge3$ there is $C_n$ such that $f_d(n)\le2^{C_n\sqrt d\log_2(d+2)}$ for all $d\ge1$.
+\end{theorem}
+\begin{proof}
+For $n=3$ this follows from Blokhuis's theorem: rainbow-$3$-free sets are exactly the isosceles sets, including
+degenerate triples, and these have at most $\binom{d+2}2$ points~\cite{Blokhuis}. Hence $f_d(3)\le\binom{d+2}2+1$.
+
+Let $n\ge4$ and $D\ge1$, and let $X$ be a finite rainbow-$n$-free set of affine dimension at most $D$. We may assume
+$X\subset\R^D$. The triple $(\emptyset,X,\smin)$ is a level-$0$ configuration with $\smin\ge\smin$, so
+Theorem~\ref{thm:allclaims} (Claim$(0)$) gives
+\[
+|X|\le\Gamma_0\,\smin=\Gamma_0\,2^{\Lst+2+2n}\,(h+1).
+\]
+By induction on $D$, $h=s_n(\lfloor D/2\rfloor)$ is finite (with $s_n(0)=1$). So $s_n(D)$ is finite and
+$s_n(D)\le A(D)\,(s_n(\lfloor D/2\rfloor)+1)$ with $A(D):=\Gamma_0\,2^{\Lst+2+2n}$. By Lemma~\ref{lem:growth} and the definition
+of $L_k$, $\log_2A(D)\le c_n\log_2(D+2)+2^{14}\kst^{\,3}\sqrt{D+4}\log_2(D+4)+2+2n$. For $D\ge1$ we have
+$\sqrt{D+4}\le\sqrt5\sqrt D$, $\log_2(D+4)\le2\log_2(D+2)$ and $\sqrt D\log_2(D+2)\ge1$, so
+$A(D)\le2^{C\sqrt D\log_2(D+2)}$ for a constant $C\ge1$ depending only on $n$. Lemma~\ref{lem:halving} gives
+$s_n(d)\le2^{6C\sqrt d\log_2(d+2)}$, and $f_d(n)=s_n(d)+1\le2^{(6C+1)\sqrt d\log_2(d+2)}$.
+\end{proof}
+
+\begin{remark}
+The proof uses Theorem~\ref{thm:LR} in five places: in G1 (through $\mu$); in Step~A of Theorem~\ref{thm:Rplus}; in
+Steps~3--5 of the Core Lemma; and in Lemma~\ref{lem:slicing}(a). If Theorem~\ref{thm:LR} were replaced by the trivial
+bound $2^{-O(r)}$ for single-type rectangles, the same argument would give only $s_n(D)\le2^{O(D)}s_n(\lfloor D/2\rfloor)$, that
+is, $f_d(n)=2^{O_n(d)}$, the classical order of magnitude.
+\end{remark}

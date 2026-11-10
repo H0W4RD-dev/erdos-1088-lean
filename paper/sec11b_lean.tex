@@ -1,0 +1,44 @@
+% ====================================================================
+\section{Formal verification in Lean}\label{sec:lean}
+% ====================================================================
+
+The complete argument of this paper has been formalized in Lean~4 (toolchain \texttt{v4.33.1}) on Mathlib revision
+\texttt{0df444a3}, the same pins as the Google DeepMind \emph{formal-conjectures} repository at commit
+\texttt{c77fdd446d23539302aa73bcfae4a9fa962b8382}. The formalization is about $9{,}800$ lines.
+
+\paragraph{The target statement.} The theorem proved is \texttt{Erdos1088.erdos\_1088}:
+\[
+\forall n\ge 3,\qquad \bigl(d\mapsto \log_2 f(d,n)\bigr) = o(d)\quad (d\to\infty),
+\]
+where \texttt{f d n} is defined as $\inf\{m\ge n:$ every $m$-point subset of $\R^d$ contains an $n$-point subset
+with $\binom n2$ distinct distances$\}$. The statement and all definitions it uses (\texttt{f}, \texttt{cardSet},
+\texttt{HasSubsetWithDistinctDistances}, \texttt{PairwiseDistancesDistinct}, \texttt{distinctDistances},
+\texttt{distanceSet} and the notation $\R^d$) are copied character for character from formal-conjectures. A script
+checks this against the upstream files. Only module headers and metadata attributes are dropped.
+
+Lean's \texttt{sInf} of an empty set of naturals is $0$, so a proof could in principle exploit an empty
+\texttt{cardSet}. The formal proof does not do this: it exhibits an explicit element of \texttt{cardSet d n} and
+proves $f(d,n)\le n\cdot 2^{C_n\sqrt d\log_2(d+2)}$, which is the Main Theorem.
+
+\paragraph{Trust base.} \texttt{\#print axioms Erdos1088.erdos\_1088} reports only \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}, the standard axioms of Lean and Mathlib. The development
+contains no \texttt{sorry}, no \texttt{axiom} declarations and no \texttt{native\_decide}.
+
+\paragraph{Differences from the informal proof.} The formalization follows Sections~\ref{sec:LR}--\ref{sec:main}
+with the following changes, none of which affects the Main Theorem.
+\begin{itemize}[leftmargin=1.5em]
+\item The normalization step (NF3) of Lemma~\ref{lem:NF} is replaced by a tournament argument. As a result, the formal
+  version of Theorem~\ref{thm:LR} has loss $2^{O(k)}\sqrt r\log r$ instead of $O(k^3\sqrt r\log r)$; for fixed $k$ the
+  shape $2^{-O_k(\sqrt r\log r)}$ is the same, and this is all the later sections use.
+\item John's theorem in Lemma~\ref{lem:R} is replaced by a factorization derived from the Kiefer--Wolfowitz
+  optimal-design theorem, proved from the matrix determinant lemma and the spectral theorem. Sheppard's formula is
+  proved from the rotation invariance of the standard Gaussian.
+\item Several constants are larger. These include those in the Core Lemma and in Theorem~\ref{thm:Rplus}, the
+  number of big radii at which Step~A applies ($3$ instead of $2$), and $\kst$. The case $n=3$ is derived from G1
+  rather than from Blokhuis's theorem.
+\item Lean made explicit some hypotheses that the text leaves implicit, for example $\sigma>0$ and $\Gamma\ge 0$ in
+  the kill step, and $B\subseteq X$ in the Core Lemma. It found no gap in the argument.
+\end{itemize}
+
+\paragraph{Availability.} The Lean source, build instructions and audit scripts are available at
+\texttt{[REPOSITORY URL --- to be added on publication]}.

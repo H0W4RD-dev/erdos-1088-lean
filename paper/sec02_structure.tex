@@ -1,0 +1,105 @@
+% ====================================================================
+\section{Structure of the proof}\label{sec:structure}
+% ====================================================================
+
+Throughout, $n\ge 4$ is fixed; the case $n=3$ is Blokhuis's theorem. $X$ is a finite rainbow-$n$-free set of
+affine dimension at most $D\ge 1$, and $h:=s_n(\lfloor D/2\rfloor)$. The proof is a \emph{halving recursion}: we
+show
+\begin{equation}\label{eq:halving-intro}
+  s_n(D)\;\le\;2^{C_n\sqrt D\log_2(D+2)}\,\bigl(s_n(\lfloor D/2\rfloor)+1\bigr)\qquad(D\ge 1),
+\end{equation}
+and iterating~\eqref{eq:halving-intro} gives $s_n(d)=2^{O_n(\sqrt d\log d)}$ (Lemma~\ref{lem:halving}).
+The quantity $h$ enters only through the \emph{orthogonal split} (Lemma~\ref{lem:OR}). If $R,C\subseteq X$ and
+$\langle x-x',w-w'\rangle=0$ for all $x,x'\in R$ and $w,w'\in C$, then one of $R,C$ has affine dimension at most
+$\lfloor D/2\rfloor$, so $\min(|R|,|C|)\le h$. Every rectangle produced by Theorem~LR in the geometric part ends
+in such an orthogonal split.
+
+\subsection{Levels}
+A \emph{level-$j$ configuration} (Definition~\ref{def:config}) is a triple $(S,W,\sigma)$. Here $S\subseteq X$ is
+a rainbow set with $|S|=j$, and $W\subseteq X\setminus S$ consists of points $x$ with $S\cup\{x\}$ rainbow. The
+number $\sigma$ is a \emph{cap}: every sphere centred at a point of $S$ meets $W$ in fewer than $\sigma$
+points. The statement
+\begin{center}
+\textbf{Claim$(j)$:} every level-$j$ configuration with $\sigma\ge\smin$ has $|W|\le\Gamma_j\,\sigma$
+\end{center}
+is proved by downward induction on $j$, from $j=n-2$ to $j=0$. Claim$(0)$, applied to $(\emptyset,X,\smin)$,
+gives $|X|\le\Gamma_0\smin$. Here $\Gamma_0=(D+2)^{O_n(1)}$ and $\smin=2^{O_n(\sqrt D\log D)}(h+1)$, which
+is~\eqref{eq:halving-intro}.
+
+\subsection{The induction step}
+Each step from Claim$(j+1)$ to Claim$(j)$ follows one pattern.
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+\item \emph{Kill step} (Lemma~\ref{lem:kill}, Theorem~\ref{thm:Rplus}). Each $b\in W$ receives a
+  polynomial $F_b$ of bounded degree in the lifted coordinates $(|y|^2,y)$. Its factors are spheres about $b$
+  with the radii of the \emph{big} classes of $b$, together with some degenerate loci. A point $x$ with
+  $F_b(x)\ne 0$ extends $S\cup\{b\}$ to a rainbow set and lies only in small classes of $b$, so these points
+  form a level-$(j+1)$ configuration and are few by Claim$(j+1)$. Caro--Wei and Lemma~H (a pair needs to be
+  killed from one side only) then bound $|W|$. This works as long as every $b\in W$ has at most $K=O_n(1)$ big
+  classes.
+\item \emph{Few big classes.} At the top levels $j\ge n-4$ this is not needed. If $b$ has two big classes, then
+  $n-4$ points of $S$ serve as ``spread'' points: together with $b$ and an auxiliary point $a$ they form an
+  $(n-2)$-set. A label-counting argument (G1) and Theorem~LR then show that the auxiliary points $a$ which are not
+  killed are few (Section~\ref{sec:top}; this is Theorem~R$^+$, written out in full for a single cap). At the
+  lower levels $j=r\le n-5$ there are not enough spread points. Instead we prove the class-count statement
+  \textbf{E1$_r$}: every $b\in W$ has fewer than $K_r=12\cdot 6^{\,n-5-r}$ big classes (Theorem~\ref{thm:E1}).
+\item \emph{Proof of E1$_r$.} Suppose $b$ has $K_r$ big classes. We pass to a \emph{rainbow family}: centres
+  $B\ni b$ and pairwise disjoint classes $C_k$ on which every point of $B$ has a constant distance, with all
+  these constant labels distinct. The \emph{Slicing Lemma} (Section~\ref{sec:slicing}) adds one centre at a time
+  and loses a factor $6$ in the number of classes. Its proof uses K\"onig's theorem, the relative bound HR and
+  Theorem~LR. After $n-5-r$ slicing rounds there are $n-4-r$ centres and $12$ classes. The \emph{Core Lemma}
+  (Section~\ref{sec:core}) shows that this is impossible, using two auxiliary points, G1, HR and three applications
+  of Theorem~LR.
+\item \emph{Hereditary relative bound HR$_r$} (Lemma~\ref{lem:HR}). It is a direct consequence of
+  Claim$(r+1)$: for $c\in W$, $V\subseteq W\setminus\{c\}$ and $\theta\ge\sigma$, the points of $V$ lying in
+  classes of $c$ that meet $V$ in fewer than $\theta$ points number at most $\Gamma'_r\theta$, with the explicit
+  constant $\Gamma'_r=\Gamma_{r+1}+r^2$. This is the only place where the induction hypothesis enters the
+  proof of E1$_r$, and it turns ``$c$ has few heavy classes'' into a \emph{covering} statement, which is what the
+  cleaning lemma needs.
+\end{enumerate}
+
+\subsection{Linear order of dependencies}
+The results are proved in the following order. Each item uses only earlier items, and none uses the
+statement it is proving (there is no circularity).
+\begin{enumerate}[label=\arabic*.,leftmargin=2em]
+\item Classical tools (Section~\ref{sec:prelim}). John's theorem and Sheppard's formula (cited); the cleaning
+  lemma GL (proved); the Hadamard-product rank bound HP and the dimension count DIM (proved); Lemma~H (proved);
+  Caro--Wei and K\"onig (cited); the orthogonal split OR (proved); the halving lemma (proved).
+\item Theorem~LR (Section~\ref{sec:LR}). Lemma~R (margin rounding), Lemmas~A and~B, Lemma~NF (normal form), then
+  Theorem~LR, followed by Corollary~\ref{cor:RQlist}.
+\item The label lemma and G1 (Section~\ref{sec:G1}), from LR and OR.
+\item Configurations; Lemma~HR$_r$ and the kill Lemma~\ref{lem:kill}, both assuming Claim$(r+1)$
+  (Section~\ref{sec:framework}).
+\item Theorem~R$^+$: Claim$(j)$ for $j=n-2,n-3,\dots,\max(n-4,0)$ (Section~\ref{sec:top}), from G1, LR, GL, HP,
+  OR, Lemma~H, Caro--Wei, DIM and the two-distribution Lemma~\ref{lem:twodist}.
+\item For $n\ge 5$: the Core Lemma (Section~\ref{sec:core}) and the Slicing Lemma (Section~\ref{sec:slicing}),
+  each assuming HR$_r$; then Theorem~E1$_r$.
+\item The downward induction $\text{Claim}(r+1)\Rightarrow\text{HR}_r\Rightarrow\text{E1}_r\Rightarrow
+  \text{Claim}(r)$ for $r=n-5,\dots,0$ (Section~\ref{sec:main}).
+\item The Main Theorem, from Claim$(0)$ and the halving lemma (Section~\ref{sec:main}).
+\end{enumerate}
+The induction over levels takes place at a fixed dimension $D$, and the only input from dimensions below $D$ is
+the finite number $h=s_n(\lfloor D/2\rfloor)$. The recursion~\eqref{eq:halving-intro} is therefore an ordinary
+induction on $D$.
+
+\subsection{The threshold tower}
+All constants depend only on $n$ and $D$, except $\smin$, which also depends on $h$. They are defined in the
+following order, and each definition uses only quantities defined before it (Section~\ref{sec:main} gives the
+details).
+\begin{enumerate}[label=(T\arabic*),leftmargin=2.6em]
+\item Type counts $k'$, $k_c(r)$, $k_{\mathrm{sl}}(r,p)$; the class counts $K_r$; their maximum $\kst$. These
+  depend on $n$ only.
+\item $\Lst:=L_{\kst}(D+2)$ from Theorem~LR; then $\mu:=2^{\Lst}(h+1)$, $e:=2^{\Lst+1}(h+1)$,
+  $e_A:=2^{\Lst+2}(h+1)$, and
+  \[\smin:=2^{\Lst+2+2n}(h+1).\]
+  So $\smin$ depends only on $n$, $D$ and $h$, and not on any $\Gamma$.
+\item $Q:=2^{44}n^4(D+2)^{8k'}$ and $\Gamma_{n-2}:=4(n-2)^2$; then $\Gamma_{n-3}$ and $\Gamma_{n-4}$
+  by~\eqref{eq:Gamma-top} (for $n=4$ these are $\Gamma_1,\Gamma_0$, and the tower ends here).
+\item For $r=n-5,n-6,\dots,0$, in this order: $\Gamma'_r:=\Gamma_{r+1}+r^2$, then the ratios
+  $\theta_{\mathrm{rel}}$, $\eps$, $\hat M_{\mathrm{core}}$, $\theta_{\mathrm{sl}}$, $\hat m_p$ and ${\mathrm{ratio}}_r$ (all
+  functions of $n$, $D$ and $\Gamma'_r$), and then $\Gamma_r$ by~\eqref{eq:Gamma-low}.
+\end{enumerate}
+Every $\Gamma_j$, $\Gamma'_r$ and ${\mathrm{ratio}}_r$ is a pure number, at most $(D+2)^{c_n}$, and does not depend
+on the cap $\sigma$. Every absolute error term occurring in the proofs ($\mu$, $e$, $e_A$, $2\cdot 4^{n-2}\mu+4$,
+$4^n\mu$, and $1$) is at most $\smin\le\sigma$. These are the two facts that allow the caps to vary freely
+inside the induction: Claim$(j+1)$ is applied with caps $\theta\ge\sigma$, $Q\sigma$ and
+${\mathrm{ratio}}_r\sigma$, all of which are at least $\smin$.

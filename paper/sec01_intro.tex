@@ -1,0 +1,118 @@
+% ====================================================================
+\section{Introduction}\label{sec:intro}
+% ====================================================================
+
+\subsection{The problem}
+A finite set $A\subset\R^d$ is \emph{rainbow} if its $\binom{|A|}{2}$ pairwise distances are pairwise distinct
+(sets with at most two points are rainbow). A set $X$ is \emph{rainbow-$n$-free} if it contains no rainbow
+subset of size $n$. For $n\ge 3$ and $d\ge 1$ let $f_d(n)$ be the least $m$ such that every set of $m$ points of
+$\R^d$ contains a rainbow $n$-subset, and let
+\[
+  s_n(j):=\sup\{|X| : X\subset\R^{N}\text{ finite, rainbow-$n$-free, } \dim\aff X\le j\}
+\]
+(the ambient dimension $N$ is irrelevant). Then $f_d(n)=s_n(d)+1$, and $s_n(0)=1$.
+
+Erd\H{o}s asked whether $f_d(n)=2^{o(d)}$ for every fixed $n$; this is Problem~\#1088 on the
+Erd\H{o}s problems website~\cite{EP1088}.\footnote{Within the project the problem is also tracked under
+the identifier JSP-000905.} We prove that the answer is yes, with a much stronger quantitative bound.
+
+\begin{theorem}[Main Theorem]\label{thm:main-intro}
+For every fixed $n\ge 3$ there is a constant $C_n$ such that every set of more than
+$2^{C_n\sqrt d\,\log_2(d+2)}$ points of $\R^d$ contains $n$ points with all $\binom n2$ pairwise distances
+distinct. That is, $f_d(n)=2^{O_n(\sqrt d\log d)}=2^{o(d)}$.
+\end{theorem}
+
+\subsection{History}
+As recorded on the problem page~\cite{EP1088}, Erd\H{o}s and Straus showed $f_d(n)\le c_n^{\,d}$ for a constant
+$c_n$; the problem asks whether the exponential dependence on $d$ is necessary. In the other direction,
+$s$-distance sets with $s=\binom n2-1$ are rainbow-$n$-free, since a rainbow $n$-set needs $\binom n2$ distinct
+distances. For instance the $0/1$-vectors of weight $w$ in $\R^{d+1}$ lie in a $d$-dimensional affine subspace
+and determine only the distances $\sqrt{2i}$, $1\le i\le w$; with $w=\binom n2-1$ this gives
+$f_d(n)>\binom{d+1}{\binom n2-1}$ for $d+1\ge \binom n2 -1$. So $f_d(n)$ grows at least polynomially in $d$, with
+degree depending on $n$, and we are not aware of any super-polynomial lower bound.
+
+For $n=3$ the problem is classical and polynomial: a set is rainbow-$3$-free exactly when every three of its
+points span an isosceles triangle, where collinear triples with two equal distances count as (degenerate)
+isosceles triangles. Blokhuis~\cite{Blokhuis} proved that an isosceles set in $\R^d$ has at most
+$\binom{d+2}{2}$ points. His argument is purely metric, so it covers degenerate triples, and it gives
+$f_d(3)\le\binom{d+2}2+1$. For $n\ge 4$ we know of no bound of the form $2^{o(d)}$ in the
+literature before the present work.
+
+\subsection{The new tool: Theorem LR}
+The geometric part of our argument repeatedly produces matrices of the form $M[x,w]=|x-w|^2$, of rank at most
+$D+2$, in which every entry is ``explained'' by one of boundedly many simple causes. A typical cause is
+$|x-w|=|w-t|$ for a fixed point $t$, which depends only on the column $w$. Another is $|x-w|=|x-t|$, which
+depends only on the row $x$. A third is $|x-w|=d$ for a fixed number $d$. The tool that converts such a cover
+into geometric structure is the following rank--rectangle theorem (Theorem~\ref{thm:LR}).
+
+\medskip\noindent\textbf{Theorem LR (informal).} \emph{Let $M\in\R^{m\times n}$ have rank at most $r$, and let
+$\tau_1,\dots,\tau_k$ be functions on $[m]\times[n]$, each depending only on the row or only on the column. If every
+entry satisfies $M[x,w]=\tau_i(x,w)$ for some $i$, then there are $R\subseteq[m]$, $C\subseteq[n]$ and a single
+$i$ with $M=\tau_i$ on $R\times C$, $|R|\ge 2^{-L}m$ and $|C|\ge 2^{-L}n$, where
+$L=O(k^3\sqrt{r+2}\,\log(r+2))$.}
+
+\medskip
+For Boolean matrices this is the rectangle form of Lovett's bound~\cite{Lovett}, in Rothvoss's
+formulation~\cite{Rothvoss}. Our proof follows Rothvoss's hyperplane-rounding argument and adds two ingredients.
+The first is a normal form, obtained on a sub-rectangle of constant relative size, which allows us to rescale the
+matrix at its largest gap \emph{by a row function, a column function or a constant}. This keeps a margin even
+when the type values accumulate. The second is a cleaning step, the Gavinsky--Lovett lemma (Lemma~\ref{lem:GL}),
+applied to a Hadamard product, whose rank enters only logarithmically.
+
+\begin{remark}[possible independent interest; to be confirmed by experts]\label{rem:SS}
+The special case in which all types are column functions concerns \emph{$k$-listable} matrices, in which every
+column takes at most $k$ distinct values. Here Theorem~LR yields a column-constant submatrix of relative size
+$2^{-O(k^3\sqrt d\log d)}$ in each direction for rank-$d$ matrices (Corollary~\ref{cor:RQlist}). By
+Singer--Sudan~\cite[Prop.~2.3]{SingerSudan}, a parallel $k$-partitioned point--hyperplane configuration in $\R^d$
+yields a $k$-listable matrix of rank at most $d$. A column-constant (``$1$-listable'') submatrix of it then yields a
+complete bipartite subgraph of the incidence graph, of proportional size up to a factor depending on $k$. Singer and
+Sudan write that ``the best bound we know for parallel 3-partitioned configurations is $2^{-\tilde O(d)}$''
+(\cite{SingerSudan}, arXiv version~5, Section~1). As far as we can tell, Corollary~\ref{cor:RQlist} improves this to
+$2^{-O(\sqrt d\log d)}$ for every fixed $k$. Our literature search (summarised in Section~\ref{sec:concl}) was
+limited, and the observation follows from Rothvoss's proof in a few lines, so experts may regard it as known. The
+claim of improvement must be confirmed by experts before it is relied on. Theorem~LR does not bear on the
+log-rank conjecture, which would require $2^{-\mathrm{polylog}(d)}$.
+\end{remark}
+
+\subsection{Prior in-project work}
+This manuscript builds on earlier notes of a peer session in the same project~\cite{Peer}. Those notes
+recorded the problem, its literature and the lower-bound constructions above. They also contained
+polynomial-method ``peeling'' lemmas: a point all of whose distances to the rest of a set lie in a short list can
+be removed using a low-degree polynomial in the lifted coordinates $(|y|^2,y)$. Lemma~H below
+(Lemma~\ref{lem:H}) is a two-sided variant of those peeling lemmas, in which each pair needs to be ``killed'' from
+one side only, at the price of squaring the dimension. The present argument does not use the other results of
+those notes, which include reductions to prime sets and twin analyses.
+
+\subsection{Verification status}
+We state this plainly, because the result would resolve a problem of Erd\H{o}s and the argument is long.
+\begin{itemize}[leftmargin=2em]
+\item The mathematics was developed by AI agents (Claude, Anthropic) in sessions directed by the team.
+\item Each component was checked by at least one independent AI referee pass. These passes found and repaired
+  one genuine gap, a threshold gap in the top-level argument (fix F1, incorporated in
+  Section~\ref{sec:top}), together with a number of expository gaps, all addressed here.
+\item \textbf{Machine-checked.} The complete argument has been formalized in Lean~4 (Section~\ref{sec:lean}).
+  The formal proof establishes the statement of Problem~\#1088 in the formal-conjectures repository verbatim. It
+  depends only on the axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}, and it has no
+  \texttt{sorry}. The formalization proves Theorem~LR with a weaker dependence on~$k$ than stated here; this suffices
+  for the Main Theorem.
+\item \textbf{No human expert has reviewed the informal argument.} Theorem~LR is new and unpublished, and every later
+  step depends on it. It is the component we most want checked by specialists.
+\item This manuscript consolidates the project notes. A few routine changes made in the consolidation, listed in
+  Section~\ref{sec:ai}, have not themselves been refereed; among them are some explicit constants and the direct
+  single-cap write-up of Theorem~R$^+$.
+\item The finite, threshold-free implications were also tested by computer in exact arithmetic. Because every
+  threshold in the argument is astronomically large, such tests are sanity checks only and cannot test the
+  asymptotic claims (Section~\ref{sec:concl}).
+\end{itemize}
+Until an expert check has been carried out, the Main Theorem should be regarded as a \emph{candidate} solution.
+
+\subsection{Organisation}
+Section~\ref{sec:structure} gives an overview of the proof, the linear order of dependencies and the threshold
+tower. Section~\ref{sec:prelim} collects the classical tools: John's theorem, Sheppard's formula, the
+cleaning lemma (with proof), Lemma~H, the Caro--Wei and K\"onig theorems, and the orthogonal split. Section~\ref{sec:LR}
+proves Theorem~LR. Section~\ref{sec:G1} proves the label lemma and its consequence~G1 for pairs with disjoint label
+sets. Section~\ref{sec:framework} sets up the level-configurations, the hereditary relative bound~HR and the kill
+step. Section~\ref{sec:top} treats the top three levels. Sections~\ref{sec:core} and~\ref{sec:slicing} prove the
+class-count statement at the lower levels: the Core Lemma and the Slicing Lemma. Section~\ref{sec:main} closes the
+induction and proves the Main Theorem. Section~\ref{sec:concl} contains concluding remarks and the computational
+sanity checks, and Section~\ref{sec:ai} the statement on AI assistance and the acknowledgements.

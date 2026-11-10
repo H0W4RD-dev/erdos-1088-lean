@@ -1,0 +1,51 @@
+% ====================================================================
+\section{AI assistance and verification; credits}\label{sec:ai}
+% ====================================================================
+
+\subsection*{AI assistance and verification}
+The mathematics in this manuscript was developed by AI agents (Claude, Anthropic) in research sessions directed by the
+team. The agents proposed the strategy, proved the lemmas, and wrote the project notes from which this manuscript was
+assembled. The manuscript itself was also prepared by an AI agent.
+
+The arguments were checked by \emph{independent AI referee passes}: separate agent sessions that had not written the
+material under review, re-derived each step by hand, and ran their own computer tests. In summary:
+\begin{itemize}[leftmargin=1.5em]
+\item one pass on Theorem~\ref{thm:LR} (with Lemma~\ref{lem:R}, the cleaning lemma, Lemmas~A, B and NF), on
+  Corollary~\ref{cor:RQlist} and its relation to~\cite{SingerSudan}, and on an earlier proof of the case $n=4$. Verdict:
+  correct, with editorial remarks only;
+\item one pass on the kill step, the two-class count and Theorem~R$^+$. Verdict: correct after fixes F1--F3, of which
+  F1 repaired a genuine gap;
+\item one pass on the case $n=5$ of the class-count argument. Verdict: correct with expository gaps; items A--G of that
+  report are addressed in Sections~\ref{sec:framework}--\ref{sec:core};
+\item one pass on the general-$n$ argument (configurations, HR, kill step, Core Lemma, Slicing Lemma, threshold tower).
+  Verdict: correct with expository gaps; items X1--X6 of that report are addressed in Sections~\ref{sec:prelim},
+  \ref{sec:framework}--\ref{sec:main} and~\ref{sec:concl}.
+\end{itemize}
+Each referee found the material under review correct, conditional on its inputs. All of them identified
+Theorem~\ref{thm:LR}, which is new and unpublished, as the weakest link.
+
+\textbf{No human expert has reviewed any part of this argument.} AI referee passes can miss errors, and several
+passes sharing similar blind spots is a real possibility. The Lean formalization of Section~\ref{sec:lean} was also
+written by AI agents. It removes the dependence on the referees for the \emph{formal} statement: Lean's kernel checks
+every step. Two things remain for human judgement: whether the formal statement faithfully captures Erd\H{o}s's
+question, and the sharper form of Theorem~\ref{thm:LR} stated here, whose NF3 step is not formalized.
+
+We also note what has \emph{not} been refereed in the present form. While consolidating the project notes into this
+manuscript we made some routine changes, and these have not been checked by any referee pass. They are: the
+explicit choices $Q=2^{44}n^4(D+2)^{8k'}$, $\smin=2^{\Lst+2+2n}(h+1)$ and $e_A=2^{\Lst+2}(h+1)$; the explicit constant
+$2^{14}$ in $L_k(r)$ and the explicit cost bounds in Lemma~\ref{lem:NF}; the column-basis proof of the cleaning lemma; the
+self-contained statement and proof of Lemma~\ref{lem:twodist}; the direct (rather than translated) single-cap proof of
+Theorem~\ref{thm:Rplus}; and the explicit growth recursion in Lemma~\ref{lem:growth}. We believe these changes are correct
+and harmless, but they are part of what an expert should check.
+
+\subsection*{Author list and credits}
+\textbf{[PLACEHOLDER --- the author list and the form of credit are to be confirmed by the team.]}
+
+\smallskip\noindent
+\emph{Direction.} Will Howe (H0W4RD-dev) directed the work.
+
+\smallskip\noindent
+\emph{Contributors and acknowledgements.} The team also includes Jensen Kohlmeyer (jenw1n), Liam Kruer (lkruer) and Grant
+Huffman (Ghuffy1). They are listed here as team members; the project records available to us do not attribute any
+mathematical contribution to this result to them. We acknowledge the prior in-project work of a peer session~\cite{Peer},
+on which Section~\ref{sec:intro} and Lemma~\ref{lem:H} build.

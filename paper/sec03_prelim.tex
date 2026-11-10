@@ -1,0 +1,156 @@
+% ====================================================================
+\section{Notation, conventions and classical tools}\label{sec:prelim}
+% ====================================================================
+
+\subsection{Notation}
+For $x,y\in\R^D$ we write $\dd xy:=|x-y|$. For $c\in\R^D$ and $t>0$, $\Sph(c,t):=\{y:\dd yc=t\}$ is the sphere
+with centre $c$ and radius $t$, and for a set $U$ of positive reals $\Sph(c,U):=\bigcup_{u\in U}\Sph(c,u)$. For
+$p\ne q$, $\Bis(p,q):=\{y:\dd yp=\dd yq\}$ is the perpendicular bisector hyperplane. For a finite set $A$,
+$\Dist(A):=\{\dd xy: x\ne y\in A\}$ is its set of distances. If $A$ is rainbow then $|\Dist(A)|=\binom{|A|}2$. If
+$c$ is a point and $V$ a set, a \emph{class of $c$ in $V$} is a nonempty set $V\cap\Sph(c,t)$ with $t>0$. Two
+spheres about the same centre with different radii are disjoint, so the classes of $c$ in $V$ partition
+$V\setminus\{c\}$.
+
+The \emph{lifted coordinates} of $y\in\R^D$ are $(|y|^2,y_1,\dots,y_D)$. Every sphere equation
+$\dd yc^2-t^2=|y|^2-2\langle y,c\rangle+|c|^2-t^2$ and every bisector equation
+$\dd yp^2-\dd yq^2=-2\langle y,p-q\rangle+|p|^2-|q|^2$ is an affine function of the lifted coordinates.
+
+Since an affine isometry changes neither distances nor affine dimension, we may and do assume that a set of
+affine dimension at most $D$ lies in $\R^D$.
+
+\begin{convention}[rectangles and rounding]\label{conv:rounding}
+A \emph{rectangle} of a matrix with row set $A$ and column set $B$ is a product $A'\times B'$ with $A'\subseteq A$
+and $B'\subseteq B$. Every rectangle produced below is nonempty, and its size bounds are real inequalities: a
+conclusion $|A'|\ge 2^{-L}|A|$ with $2^{-L}|A|<1$ just says that $A'\ne\emptyset$. In the cleaning lemma,
+``half'' means at least $|A|/2$ (hence at least $\lceil |A|/2\rceil$). Whenever a bound on a set $Z$ is deduced
+from a bound on a half $Z''\subseteq Z$, we use $|Z|\le 2|Z''|$.
+\end{convention}
+
+\subsection{Two classical facts used in the rounding lemma}
+
+\begin{theorem}[John~\cite{John}; see also~\cite{Ball}]\label{thm:John}
+If $K\subset\R^s$ is a compact convex body that is symmetric about $0$ and has nonempty interior, then there is
+an ellipsoid $E$ centred at $0$ with $E\subseteq K\subseteq\sqrt s\,E$.
+\end{theorem}
+
+\begin{theorem}[Sheppard's formula~\cite{Sheppard}; see also~\cite{GW}]\label{thm:Sheppard}
+Let $u,v\in\R^s$ be unit vectors with $\langle u,v\rangle=a$ and let $g\sim N(0,I_s)$. Then
+$\Pr[\langle g,u\rangle\ge0\text{ and }\langle g,v\rangle\ge0]=\tfrac12-\tfrac{\arccos a}{2\pi}
+=\tfrac14+\tfrac{\arcsin a}{2\pi}$.
+\end{theorem}
+Consequently this probability is at least $\tfrac14$ if $a\ge 0$. If $a\le -b$ with $0\le b\le 1$, it is at
+most $\tfrac14-\tfrac{\arcsin b}{2\pi}\le\tfrac14(1-\tfrac{2b}{\pi})$, because $\arcsin b\ge b$.
+
+\subsection{Rank tools}
+
+\begin{lemma}[Hadamard products, HP]\label{lem:HP}
+For matrices $A,B$ of the same shape, $\rk(A\circ B)\le\rk A\cdot\rk B$, where $\circ$ is the entrywise
+product.
+\end{lemma}
+\begin{proof}
+Write $A=\sum_{i\le\rk A}a_ib_i^{T}$ and $B=\sum_{j\le\rk B}c_jd_j^{T}$. Then
+$A\circ B=\sum_{i,j}(a_i\circ c_j)(b_i\circ d_j)^{T}$.
+\end{proof}
+
+\begin{lemma}[distance matrices]\label{lem:distrank}
+Let $x_1,\dots,x_m,w_1,\dots,w_{m'}\in\R^D$ and let $f,g$ be real functions on the index sets. The matrix
+$[\,\dd{x_i}{w_j}^2-f(i)-g(j)\,]_{i,j}$ has rank at most $D+2$.
+\end{lemma}
+\begin{proof}
+It equals $(|x_i|^2-f(i))\mathbf 1^{T}+\mathbf 1(|w_j|^2-g(j))^{T}-2[\langle x_i,w_j\rangle]$, a sum of matrices of
+rank at most $1$, $1$ and $D$.
+\end{proof}
+In particular, each of the following matrices has rank at most $D+2$: $[\dd xa^2-v^2]$ for a constant $v$;
+$[\dd xa^2-v(a)^2]$ for a column function $v$; and $[\dd xa^2-\dd xs^2]$ for a fixed point $s$ (take
+$f(x)=\dd xs^2$). By Lemma~\ref{lem:HP}, a Hadamard product of $k$ such matrices has rank at most $(D+2)^k$.
+
+\begin{lemma}[cleaning lemma, GL; Gavinsky--Lovett~\cite{GavinskyLovett}, cf.~\cite[Lemma 4.7]{HMST}]
+\label{lem:GL}
+Let $B$ be a matrix over a field, with row set $A$ ($|A|=m$) and column set $B_0$ ($|B_0|=n$), and with
+$\rk B\le R$ for some $R\ge 1$. Suppose $B$ has at most $mn/(16R)$ nonzero entries. Then there are
+$A''\subseteq A$ and $B''\subseteq B_0$ with $|A''|\ge 7m/8$, $|B''|\ge n/2$ and $B=0$ on $A''\times B''$.
+\end{lemma}
+\begin{proof}
+Call a column \emph{light} if it has at most $m/(8R)$ nonzero entries. If $c$ columns are heavy then
+$c\,m/(8R)<mn/(16R)$ whenever $c\ge1$, so $c<n/2$, and the set $B''$ of light columns has $|B''|\ge n/2$.
+The columns in $B''$ span a space of dimension at most $R$. Choose a basis of it consisting of at most $R$
+columns from $B''$. The union of their supports has at most $R\cdot m/(8R)=m/8$ rows; let $A''$ be the
+remaining rows. Every basis column vanishes on $A''$, and every column of $B''$ is a linear combination of basis
+columns, so $B=0$ on $A''\times B''$.
+\end{proof}
+
+We use Lemma~\ref{lem:GL} in two forms. In the \emph{average form}, the total number of nonzero entries is at most
+$mn/(16R)$. In the \emph{per-column form}, every column has at most $m/(16R)$ nonzero entries, which implies the
+average form.
+
+\begin{lemma}[dimension count, DIM]\label{lem:DIM}
+The polynomials of degree at most $e$ in the $D+1$ lifted coordinates form a vector space of dimension
+$\binom{D+1+e}{e}\le(D+2)^e$. A product of $e$ affine functions of the lifted coordinates lies in this space.
+\end{lemma}
+\begin{proof}
+The count of monomials of degree at most $e$ in $D+1$ variables is $\binom{D+1+e}{e}=\prod_{i=1}^e\frac{D+1+i}{i}$,
+and each factor is at most $D+2$.
+\end{proof}
+
+\begin{lemma}[Lemma H, symmetric form]\label{lem:H}
+Let $I$ be a finite set and, for each $x\in I$, let $F_x$ be a real function on $I$. Suppose all $F_x$ lie in a
+vector space of functions of dimension at most $m$, that $F_x(x)\ne0$ for all $x$, and that for every pair
+$x\ne y$ in $I$ we have $F_x(y)=0$ or $F_y(x)=0$. Then $|I|\le m^2$.
+\end{lemma}
+\begin{proof}
+Let $A_{y,x}:=F_y(x)$. Its rows are restrictions of functions from an $m$-dimensional space, so $\rk A\le m$. The
+matrix $A\circ A^{T}$ has entries $F_y(x)F_x(y)$, which vanish for $x\ne y$ and are nonzero for $x=y$. It is
+therefore a nonsingular diagonal matrix of size $|I|$. By Lemma~\ref{lem:HP}, $|I|=\rk(A\circ A^{T})\le m^2$.
+\end{proof}
+Lemma~H is the symmetric special case of a ``bi-peeling'' lemma from earlier in the project, which extends the
+one-sided peeling lemmas of~\cite{Peer}. The squaring of the dimension is harmless for us.
+
+\subsection{Graph theory}
+
+\begin{theorem}[Caro--Wei~\cite{Caro,Wei}]\label{thm:CW}
+A finite graph with $N$ vertices and average degree $\bar d$ has an independent set of size at least
+$N/(\bar d+1)$.
+\end{theorem}
+
+\begin{theorem}[K\"onig~\cite{Konig}]\label{thm:Konig}
+In a finite bipartite graph, the maximum size of a matching equals the minimum size of a vertex cover.
+\end{theorem}
+
+\subsection{The orthogonal split}
+
+\begin{lemma}[orthogonal split, OR]\label{lem:OR}
+Let $X\subset\R^D$ be rainbow-$n$-free, $h=s_n(\lfloor D/2\rfloor)$, and let $R,C\subseteq X$ be nonempty.
+Suppose one of the following holds:
+\begin{enumerate}[label=(\alph*)]
+\item every $w\in C$ is equidistant from all points of $R$;
+\item there is a point $p\notin C$ with $R\subseteq\Bis(p,w)$ for every $w\in C$.
+\end{enumerate}
+Then $\langle x-x',w-w'\rangle=0$ for all $x,x'\in R$ and $w,w'\in C$, and $\min(|R|,|C|)\le h$.
+\end{lemma}
+\begin{proof}
+(a) $\dd xw^2-\dd{x'}w^2=|x|^2-|x'|^2-2\langle x-x',w\rangle$ does not depend on $w\in C$. Subtracting the
+values at $w$ and $w'$ gives $\langle x-x',w-w'\rangle=0$. (b) $x\in\Bis(p,w)$ means
+$2\langle x,w-p\rangle=|w|^2-|p|^2$. Hence $\langle x-x',w-p\rangle=0$ for $x,x'\in R$ and $w\in C$, and
+subtracting the identities for $w$ and $w'$ gives the claim.
+Now let $U,V\subseteq\R^D$ be the direction spaces of $\aff R$ and $\aff C$. They are orthogonal, so
+$\dim U+\dim V\le D$ and $\min(\dim U,\dim V)\le\lfloor D/2\rfloor$. The corresponding set ($R$ or $C$) is a
+rainbow-$n$-free set of affine dimension at most $\lfloor D/2\rfloor$, so its size is at most $h$.
+\end{proof}
+
+\subsection{The halving recursion}
+
+\begin{lemma}[halving]\label{lem:halving}
+Let $s:\mathbb Z_{\ge0}\to\mathbb Z_{\ge1}$ satisfy $s(0)=1$ and
+$s(D)\le A(D)\,(s(\lfloor D/2\rfloor)+1)$ for all $D\ge1$, where $A(D)=2^{C\sqrt D\log_2(D+2)}$ with $C\ge1$.
+Then $s(D)\le 2^{6C\sqrt D\log_2(D+2)}$ for all $D\ge1$.
+\end{lemma}
+\begin{proof}
+Put $u(D):=\log_2(s(D)+1)$. Then $u(0)=1$, and for $D\ge 1$,
+$u(D)\le\log_2\bigl(2A(D)(s(\lfloor D/2\rfloor)+1)\bigr)=1+C\sqrt D\log_2(D+2)+u(\lfloor D/2\rfloor)$.
+Let $D_i:=\lfloor D/2^i\rfloor$ and $m:=\lfloor\log_2D\rfloor$, so that $D_m\ge1$ and $D_{m+1}=0$. Iterating, and
+using $\sqrt{D_i}\le 2^{-i/2}\sqrt D$,
+\[
+u(D)\le (m+1)+1+C\log_2(D+2)\sqrt D\sum_{i\ge0}2^{-i/2}\le \log_2D+2+3.5\,C\sqrt D\log_2(D+2).
+\]
+Since $\log_2D+2\le 2\sqrt D\log_2(D+2)$ for $D\ge1$ and $C\ge 1$, we get $u(D)\le 6C\sqrt D\log_2(D+2)$.
+\end{proof}
