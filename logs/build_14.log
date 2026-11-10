@@ -1,0 +1,361 @@
+⚠ [8706/8757] Built E1088.CaroWei (149s)
+warning: E1088/CaroWei.lean:21:0: automatically included section variable(s) unused in theorem `E1088.degIn_mono`:
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [8707/8757] Built E1088.Konig (150s)
+✔ [8708/8757] Built E1088.Rank (150s)
+✔ [8709/8757] Built E1088.Refine (150s)
+✔ [8710/8757] Built E1088.Statement.Erdos1088 (151s)
+⚠ [8711/8757] Built E1088.Sheppard (151s)
+warning: E1088/Sheppard.lean:201:0: automatically included section variable(s) unused in theorem `E1088.inner_sum_basis`:
+  [FiniteDimensional ℝ E]
+  [MeasurableSpace E]
+  [BorelSpace E]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: E1088/Sheppard.lean:216:12: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hu]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/Sheppard.lean:219:12: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hw]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/Sheppard.lean:243:10: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hu]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/Sheppard.lean:293:19: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: E1088/Sheppard.lean:310:26: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+✔ [8712/8757] Built E1088.Asymp (206s)
+✔ [8713/8757] Built E1088.TwoDist (207s)
+✔ [8714/8757] Built E1088.LRBasic (70s)
+✔ [8715/8757] Built E1088.GL (75s)
+✔ [8716/8757] Built E1088.Main (61s)
+✔ [8717/8757] Built E1088.NF (51s)
+⚠ [8718/8757] Built E1088.KillStep (50s)
+warning: E1088/KillStep.lean:49:57: Unused tactic linter: `push_cast` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [8719/8757] Built E1088.JohnFactor (55s)
+warning: E1088/JohnFactor.lean:119:24: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hj]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/JohnFactor.lean:132:10: `continuous_finset_sum` has been deprecated: Use `continuous_finsetSum` instead
+warning: E1088/JohnFactor.lean:175:38: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/JohnFactor.lean:197:78: This simp argument is unused:
+  Finset.univ_unique
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Matrix.add_apply, Matrix.one_apply_eq, Matrix.mul_apply, replicateRow_apply, replicateCol_apply,
+    Pi.smul_apply, smul_eq_mul, hq, dotProduct, mulVec, Finset.sum_singleton]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/JohnFactor.lean:198:6: This simp argument is unused:
+  Finset.sum_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Matrix.add_apply, Matrix.one_apply_eq, Matrix.mul_apply, replicateRow_apply, replicateCol_apply,
+    Pi.smul_apply, smul_eq_mul, hq, dotProduct, mulVec, Finset.univ_unique]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/JohnFactor.lean:231:45: This simp argument is unused:
+  Unitary.coe_star
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Unitary.conjStarAlgAut_apply, star_eq_conjTranspose, conjTranspose_eq_transpose_of_trivial,
+    RCLike.ofReal_real_eq_id, Function.id_comp] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/JohnFactor.lean:290:17: This simp argument is unused:
+  Matrix.mulVecLin_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [col, mulVec_single_one, hA]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/JohnFactor.lean:290:41: This simp argument is unused:
+  mulVec_single_one
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [col, Matrix.mulVecLin_apply, hA]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: E1088/JohnFactor.lean:335:43: Variable name `hs1` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hs1
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8720/8757] Built E1088.Ortho (29s)
+✔ [8721/8757] Built E1088.AffRank (30s)
+✔ [8722/8757] Built E1088.Cut (39s)
+⚠ [8723/8757] Built E1088.LemmaR (66s)
+warning: E1088/LemmaR.lean:102:46: Variable name `hy0` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hy0
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8724/8757] Built E1088.Round (24s)
+warning: E1088/Round.lean:90:76: This simp argument is unused:
+  one_div
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [of_apply, hadamard_apply, Matrix.add_apply, vecMulVec_apply, div_eq_mul_inv, mul_inv]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8725/8757] Built E1088.LR (32s)
+warning: E1088/LR.lean:28:5: Variable name `hnegA` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hnegA
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8726/8757] Built E1088.Levels (43s)
+warning: E1088/Levels.lean:81:69: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:86:69: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:91:69: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:95:28: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:95:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:95:60: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:96:28: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:96:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:96:69: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:100:28: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:100:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:100:60: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:101:28: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:101:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:101:69: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:105:28: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:105:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:105:60: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:106:28: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:106:44: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:106:69: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:111:69: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:115:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:116:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: E1088/Levels.lean:81:69: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:86:69: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:91:69: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:95:28: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:95:44: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:95:60: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:96:28: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:96:44: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:96:69: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:100:28: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:100:44: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:100:60: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:101:28: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:101:44: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:101:69: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:105:28: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:105:44: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:105:60: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:106:28: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:106:44: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:106:69: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:111:69: Unused tactic linter: `assumption` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:115:6: Unused tactic linter: `exact (E3 _ _ hd8 (by assumption) (by assumption) (by assumption)).elim` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: E1088/Levels.lean:116:6: Unused tactic linter: `exact (E3 _ _ hd8 (by assumption) (by assumption) (Ne.symm (by assumption))).elim` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [8727/8757] Built E1088.Lemma12 (27s)
+warning: E1088/Lemma12.lean:54:31: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8728/8757] Built E1088.LRMain (40s)
+✔ [8729/8757] Built E1088.Lemma11 (25s)
+✔ [8730/8757] Built E1088.LRBound (31s)
+✔ [8731/8757] Built E1088.G1 (29s)
+✔ [8732/8757] Built E1088.Skeleton (36s)
+✔ [8733/8757] Built E1088.G1Count (41s)
+✔ [8734/8757] Built E1088.E1Proof (39s)
+⚠ [8735/8757] Built E1088.N3 (40s)
+warning: E1088/N3.lean:105:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+✔ [8736/8757] Built E1088.Rplus (42s)
+✔ [8737/8757] Built E1088.Cover (49s)
+⚠ [8738/8757] Built E1088.Slicing1 (39s)
+warning: E1088/Slicing1.lean:65:26: Unused tactic linter: `push_cast at h2 ⊢` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+✔ [8739/8757] Built E1088.Slicing2 (44s)
+✔ [8740/8757] Built E1088.Slicing3 (70s)
+⚠ [8741/8757] Built E1088.Slicing4 (74s)
+warning: E1088/Slicing4.lean:18:67: Variable name `hr` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hr
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8742/8757] Built E1088.CoreBasic (49s)
+warning: E1088/CoreBasic.lean:22:74: Variable name `hxT` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hxT
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8743/8757] Built E1088.CoreStep0 (42s)
+✔ [8744/8757] Built E1088.CoreStep12 (86s)
+⚠ [8745/8757] Built E1088.CoreStep34 (49s)
+warning: E1088/CoreStep34.lean:95:5: Variable name `hjl` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hjl
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8746/8757] Built E1088.CoreStep5 (39s)
+✔ [8747/8757] Built E1088.RplusA (40s)
+✔ [8748/8757] Built E1088.RplusA2 (42s)
+✔ [8749/8757] Built E1088.RplusA3 (60s)
+✔ [8750/8757] Built E1088.RplusStep (48s)
+⚠ [8751/8757] Built E1088.CoreFinal (273s)
+warning: E1088/CoreFinal.lean:55:28: Variable name `hδ0` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hδ0
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8752/8757] Built E1088.RplusLow (47s)
+✔ [8753/8757] Built E1088.E1Final (48s)
+⚠ [8754/8757] Built E1088.Assembly (52s)
+warning: E1088/Assembly.lean:32:28: Variable name `hn` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hn
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8755/8757] Built E1088.Final (36s)
+✔ [8756/8757] Built E1088 (36s)
+Build completed successfully (8757 jobs).
