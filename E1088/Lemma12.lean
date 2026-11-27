@@ -51,9 +51,6 @@ theorem pos_of_mem_dists {A : Finset (ℝ^d)} {t : ℝ} (h : t ∈ dists A) : 0 
   obtain ⟨p, hp, rfl⟩ := mem_image.1 h
   exact dist_pos.2 (mem_offDiag.1 hp).2.2
 
-theorem sq_ne_of_ne {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (h : a ^ 2 ≠ b ^ 2) : a ≠ b := by
-  rintro rfl; exact h rfl
-
 theorem ne_of_sq_sub_ne {a b : ℝ} (h : a ^ 2 - b ^ 2 ≠ 0) : a ≠ b := by
   rintro rfl; simp at h
 

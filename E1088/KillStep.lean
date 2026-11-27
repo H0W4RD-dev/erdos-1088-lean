@@ -70,26 +70,4 @@ theorem kill_bound (W : Finset ι) (F : ι → ι → ℝ) (m Δ : ℕ) (hrank :
     h1.trans (mul_le_mul_of_nonneg_right h3 (by positivity))
   exact_mod_cast this
 
-open scoped EuclideanGeometry
-
-/-- **Kill step, geometric form.** Kill functions are products of `e` factors
-`‖p b - y‖² - f_k(b) - g_k(y)`. -/
-theorem kill_bound_geometric {D : ℕ} (W : Finset ι) (p : ι → EuclideanSpace ℝ (Fin D)) (e Δ : ℕ)
-    (f g : Fin e → ι → ℝ)
-    (hdiag : ∀ b ∈ W, ∏ k, (‖p b - p b‖ ^ 2 - f k b - g k b) ≠ 0)
-    (hsurv : ∀ b ∈ W, #(W.filter fun x => x ≠ b ∧
-      ∏ k, (‖p b - p x‖ ^ 2 - f k b - g k x) ≠ 0) ≤ Δ) :
-    #W ≤ ((D + 2) ^ e) ^ 2 * (Δ + 1) := by
-  refine kill_bound W (fun b x => ∏ k, (‖p b - p x‖ ^ 2 - f k b - g k x)) ((D + 2) ^ e) Δ ?_
-    hdiag hsurv
-  unfold rankOn
-  have := rank_prod_le e (fun k => Matrix.of fun (i : W) (j : W) =>
-    ‖p i - p j‖ ^ 2 - f k i - g k j)
-  refine this.trans ?_
-  calc ∏ k : Fin e, (Matrix.of fun (i : W) (j : W) => ‖p i - p j‖ ^ 2 - f k i - g k j).rank
-      ≤ ∏ _k : Fin e, (D + 2) := Finset.prod_le_prod' fun k _ =>
-        rank_sqdist_le (fun i : W => p i) (fun j : W => p j) (fun i : W => f k i)
-          (fun j : W => g k j)
-    _ = (D + 2) ^ e := by simp
-
 end E1088

@@ -110,14 +110,6 @@ theorem three_split (X : Finset α) (g : α → ℝ) :
   have := card_trichotomy X g 0
   omega
 
-/-- A row function of constant strict sign is 1-comparable to a basic quantity. -/
-theorem comparable_row (X : Finset α) (Y : Finset β) (g : α → ℝ) (hg : ∀ x ∈ X, g x ≠ 0) :
-    Comparable (fun x _ => g x) 32 X Y :=
-  ⟨fun x => |g x|, fun _ => 1, fun x hx => abs_pos.2 (hg x hx), fun _ _ => one_pos,
-    fun x hx w hw => by
-      have := abs_nonneg (g x)
-      simp only [mul_one]; constructor <;> linarith⟩
-
 /-- A column function of constant strict sign is 1-comparable to a basic quantity. -/
 theorem comparable_col (X : Finset α) (Y : Finset β) (g : β → ℝ) (hg : ∀ w ∈ Y, g w ≠ 0) :
     Comparable (fun _ w => g w) 32 X Y :=

@@ -15,10 +15,6 @@ variable {d : ℕ}
 
 /-! ### Numerics -/
 
-theorem choose_two_le_sq (m : ℕ) : m.choose 2 ≤ m * m := by
-  rw [Nat.choose_two_right]
-  exact (Nat.div_le_self _ _).trans (Nat.mul_le_mul_left _ (Nat.sub_le _ _))
-
 theorem ksl_le_kstar (n r p : ℕ) (hn : 5 ≤ n) (hr : r ≤ n - 5) (hp : p ≤ n - 4 - r) :
     ksl r p (Kp n r (p + 1)) ≤ kstar n := by
   unfold ksl Kp kstar
@@ -26,7 +22,7 @@ theorem ksl_le_kstar (n r p : ℕ) (hn : 5 ≤ n) (hr : r ≤ n - 5) (hp : p ≤
     have : 3 * (12 * 6 ^ (n - 4 - r - (p + 1))) = 6 ^ (n - 4 - r - (p + 1) + 2) := by
       rw [pow_add]; ring
     rw [this]; exact Nat.pow_le_pow_right (by norm_num) (by omega)
-  have h2 := choose_two_le_sq (r + p)
+  have h2 := choose_two_le_sq' (r + p)
   have h3 : r + p ≤ n := by omega
   have h4 : (r + p) * (r + p) ≤ n * n := Nat.mul_le_mul h3 h3
   have h5 : 2 * p + 2 * r ≤ n * n := by nlinarith
@@ -42,25 +38,9 @@ theorem natCast_le_pow (A : ℝ) (hA : 2 ≤ A) (N : ℕ) : (N : ℝ) ≤ A ^ N 
   have h1 : (N : ℝ) < 2 ^ N := by exact_mod_cast Nat.lt_two_pow_self
   exact h1.le.trans (pow_le_pow_left₀ (by norm_num) hA N)
 
-theorem kc_le (n r : ℕ) (hr : r ≤ n) : kc n r ≤ 3 * n ^ 2 + 7 * n + 1 := by
-  show (n - 2) + (n - 2).choose 2 + (n - 4 - r) + 1 + r +
-    ((n - 2) + (n - 2).choose 2 + (n - 4 - r) + 2 * r + r.choose 2) ≤ 3 * n ^ 2 + 7 * n + 1
-  have h1 := choose_two_le_sq (n - 2)
-  have h2 := choose_two_le_sq r
-  have h3 : (n - 2) * (n - 2) ≤ n * n := Nat.mul_le_mul (Nat.sub_le _ _) (Nat.sub_le _ _)
-  have h4 : r * r ≤ n * n := Nat.mul_le_mul hr hr
-  have h6 : n ^ 2 = n * n := sq n
-  rw [h6]
-  generalize (n - 2).choose 2 = C1 at *
-  generalize r.choose 2 = C2 at *
-  generalize (n - 2) * (n - 2) = P at *
-  generalize r * r = R at *
-  generalize n * n = Z at *
-  omega
-
 /-- The uniform exponent of `ratio_r`. -/
 def cE1 (n : ℕ) : ℕ :=
-  (22 + 2 * n + n ^ 2 + 2 * (3 * n ^ 2 + 7 * n + 1)) +
+  (22 + 2 * n + n ^ 2 + 2 * kstar n) +
     n * (2 * n * (n + 12 * 6 ^ n) + 6 + kstar n) + 2 * n * (n + 12 * 6 ^ n) + 3
 
 theorem ratioE1_le (n D r : ℕ) (hn : 5 ≤ n) (hr : r ≤ n - 5) (Γ' : ℝ) (hΓ : 1 ≤ Γ') :
@@ -73,7 +53,7 @@ theorem ratioE1_le (n D r : ℕ) (hn : 5 ≤ n) (hr : r ≤ n - 5) (Γ' : ℝ) (
   have haA : a ≤ A := by rw [hA]; nlinarith
   have hΓA : Γ' ≤ A := by rw [hA]; nlinarith
   have mono : ∀ {p q : ℕ}, p ≤ q → A ^ p ≤ A ^ q := fun h => pow_le_pow_right₀ hA1 h
-  set e0 := 22 + 2 * n + n ^ 2 + 2 * (3 * n ^ 2 + 7 * n + 1) with he0
+  set e0 := 22 + 2 * n + n ^ 2 + 2 * kstar n with he0
   set N1 := 2 * n * (n + 12 * 6 ^ n) + 6 + kstar n with hN1
   have hK : ∀ p, Kp n r p ≤ 12 * 6 ^ n := fun p =>
     Nat.mul_le_mul_left _ (Nat.pow_le_pow_right (by norm_num) (by omega))
@@ -107,11 +87,11 @@ theorem ratioE1_le (n D r : ℕ) (hn : 5 ≤ n) (hr : r ≤ n - 5) (Γ' : ℝ) (
     have hn2 : ((n : ℝ)) ^ 2 ≤ A ^ (n ^ 2) := by
       have := natCast_le_pow A hA2 (n ^ 2); push_cast at this; exact this
     have hG : Γ' ^ 2 ≤ A ^ 2 := pow_le_pow_left₀ (by linarith) hΓA 2
-    have hkc : a ^ (2 * kc n r) ≤ A ^ (2 * (3 * n ^ 2 + 7 * n + 1)) :=
+    have hkc : a ^ (2 * kc n r) ≤ A ^ (2 * kstar n) :=
       (pow_le_pow_left₀ (by linarith) haA _).trans
-        (mono (Nat.mul_le_mul_left _ (kc_le n r (by omega))))
+        (mono (Nat.mul_le_mul_left _ (kc_le_kstar n r hn (by omega))))
     calc (2 : ℝ) ^ 20 * 4 ^ n * n ^ 2 * Γ' ^ 2 * a ^ (2 * kc n r)
-        ≤ A ^ 20 * A ^ (2 * n) * A ^ (n ^ 2) * A ^ 2 * A ^ (2 * (3 * n ^ 2 + 7 * n + 1)) := by
+        ≤ A ^ 20 * A ^ (2 * n) * A ^ (n ^ 2) * A ^ 2 * A ^ (2 * kstar n) := by
           gcongr
       _ = A ^ e0 := by rw [he0]; simp only [← pow_add]; ring_nf
   have haux : ∀ j, j ≤ n - 4 - r → mAux n D r Γ' j ≤ A ^ (e0 + j * N1) := by
