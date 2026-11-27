@@ -4,16 +4,12 @@ open E1088
 #print axioms E1088.exists_factor
 #print axioms E1088.rank_hadamard_le
 #print axioms E1088.rank_add_le'
-#print axioms E1088.rank_prod_le
-#print axioms E1088.rank_sqdist_le
 #print axioms E1088.rank_sqdist_le_affine
 #print axioms E1088.card_le_rank_sq_of_kill
-#print axioms E1088.card_le_of_kill
 #print axioms E1088.cleaning
 #print axioms E1088.caro_wei_harmonic
 #print axioms E1088.caro_wei
 #print axioms E1088.kill_bound
-#print axioms E1088.kill_bound_geometric
 #print axioms E1088.affDim_add_le_of_ortho
 #print axioms E1088.min_affDim_le_of_ortho
 #print axioms E1088.ortho_of_equidistant
